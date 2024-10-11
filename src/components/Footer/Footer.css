@@ -1,0 +1,96 @@
+  .footer {
+      width: 100%;
+      height: 45vh;
+      font-family: "Livvic", sans-serif;
+      background-color: #1f2632;
+      padding: 3rem 10rem;
+  }
+
+  .footer-wrap {
+      display: flex;
+      gap: 2rem;
+  }
+
+  .footer-column {
+      flex-basis: 25%;
+  }
+
+  .footer-logo h1 {
+      color: #22b6af;
+      font-size: 35px;
+      font-weight: 600;
+      font-family: "Barlow Condensed", sans-serif;
+  }
+
+  .footer-logo p {
+      padding: 1rem 0 2rem 0;
+      color: #fafdff;
+  }
+
+  .social-links {
+      display: flex;
+      gap: 1rem;
+  }
+
+  .social-links li {
+      list-style: none;
+  }
+
+  .social-links li a {
+      font-size: 24px;
+      color: #22b6af;
+  }
+
+  .footer-column h4 {
+      color: #fafdff;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 2px;
+  }
+
+  .footer-menu {
+      padding-top: 1rem;
+  }
+
+  .footer-menu li {
+      list-style: none;
+      padding-bottom: 0.5rem;
+  }
+
+  .footer-menu li a {
+      color: #fafdff;
+  }
+
+  .footer-menu p {
+      color: #fafdff;
+  }
+
+
+  .footer-menu .touch-btn {
+      color: #fafdff;
+      background-color: #22b6af;
+      padding: 0.8rem 1.8rem;
+      border-radius: 30px;
+  }
+
+  .contact {
+      margin: 2rem 0;
+  }
+
+  .copyright {
+      width: 100%;
+      height: 5vh;
+      border-top: 1px solid #777;
+      font-family: "Livvic", sans-serif;
+      background-color: #1f2632;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+
+  .copyright p{
+    font-size: 14px;
+    font-weight: 500;
+    color: #fafdff;
+    letter-spacing: 1px;
+  }

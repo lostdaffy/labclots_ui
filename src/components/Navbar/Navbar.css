@@ -1,0 +1,39 @@
+.navbar {
+    width: 100%;
+    padding: 1.2rem 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fafdff;
+}
+
+.navbar h1{
+    color: #22b6af;
+}
+
+.nav-links {
+    display: flex;
+    gap: 4rem;
+}
+
+.nav-links a {
+    color: #1f2632;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: "Livvic", sans-serif;
+}
+
+.login-btn {
+    background: #22b6af;
+    color: #fafdff;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 0.6rem 3rem;
+    letter-spacing: 1px;
+    font-family: "Livvic", sans-serif;
+}
+
+.login-btn i {
+    font-size: 24px;
+}
+
