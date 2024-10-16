@@ -7,7 +7,7 @@ const Login = () => {
     <>
       <div className="user-login">
         <div className="login-form">
-          <div class="form-wrap">
+          <div className="form-wrap">
             <h2>Login Lab</h2>
             <form>
               <div className="input-field">
@@ -30,8 +30,8 @@ const Login = () => {
                 />
               </div>
 
-              <Link class="login-btn">Log in</Link>
-              <div class="links">
+              <Link className="login-btn">Log in</Link>
+              <div className="links">
                 <Link href="#">Forgot password?</Link>
                 <Link to="/User-Register">Create New Account</Link>
               </div>

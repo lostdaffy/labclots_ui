@@ -4,27 +4,42 @@ import { Link } from "react-router-dom";
 import { Axios } from "axios";
 
 const Register = () => {
+  const [name, setName] = useState();
   const [labName, setLabName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    Axios.post("", { labName, email, password })
+    Axios.post("", {name, labName, email, password })
       .then((result) => console.log(result))
       .catch((err) => console.log(err));
   };
+
 
   return (
     <>
       <div className="user-login">
         <div className="login-form">
-          <div class="form-wrap">
+          <div className="form-wrap">
             <h2>Register Lab</h2>
 
             <form onSubmit={handleSubmit}>
               <div className="input-field">
-                <label for="labName">Lab Name</label>
+                <label htmlFor="name">Name</label>
+                <input
+                  type="text"
+                  placeholder="Lab Owner Name"
+                  name="ownerName"
+                  onChange={(e) => {
+                    setName(e.target.value);
+                  }}
+                  required
+                />
+              </div>
+
+              <div className="input-field">
+                <label htmlFor="labName">Lab Name</label>
                 <input
                   type="text"
                   placeholder="Enter Lab Name"
@@ -37,10 +52,10 @@ const Register = () => {
               </div>
 
               <div className="input-field">
-                <label for="email">Email</label>
+                <label htmlFor="email">Email</label>
                 <input
                   type="text"
-                  placeholder="Enter Email"
+                  placeholder="Enter Lab Email"
                   name="email"
                   onChange={(e) => {
                     setEmail(e.target.value);
@@ -50,7 +65,7 @@ const Register = () => {
               </div>
 
               <div className="input-field">
-                <label for="password">Password</label>
+                <label htmlFor="password">Password</label>
                 <input
                   type="password"
                   placeholder="Enter Password"
@@ -62,7 +77,7 @@ const Register = () => {
                 />
               </div>
 
-              <Link class="login-btn">Sign up</Link>
+              <Link className="login-btn">Sign up</Link>
             </form>
           </div>
         </div>

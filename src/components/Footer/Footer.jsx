@@ -17,22 +17,22 @@ const Footer = () => {
               <div className="social-links">
                 <li>
                   <Link>
-                    <i class="ri-facebook-fill"></i>
+                    <i className="ri-facebook-fill"></i>
                   </Link>
                 </li>
                 <li>
                   <Link>
-                    <i class="ri-instagram-line"></i>
+                    <i className="ri-instagram-line"></i>
                   </Link>
                 </li>
                 <li>
                   <Link>
-                    <i class="ri-linkedin-fill"></i>
+                    <i className="ri-linkedin-fill"></i>
                   </Link>
                 </li>
                 <li>
                   <Link>
-                    <i class="ri-twitter-x-fill"></i>
+                    <i className="ri-twitter-x-fill"></i>
                   </Link>
                 </li>
               </div>

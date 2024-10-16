@@ -19,7 +19,7 @@ const Home = () => {
             <div className="hero-btn">
               <li>
                 <Link to="/User-Login" className="login-btn">
-                  Login Lab <i class="ri-microscope-line"></i>
+                  Login Lab <i className="ri-microscope-line"></i>
                 </Link>
               </li>
             </div>
