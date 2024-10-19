@@ -12,6 +12,7 @@ import Home from "./pages/Home/Home.jsx";
 import About from "./pages/About/About.jsx";
 import Login from "./pages/Login/Login.jsx";
 import Register from "./pages/Register/Register.jsx";
+import VerifyUser from "./pages/VerifyUser/VerifyUser.jsx";
 
 // Created a function for Routes
 const router = createBrowserRouter(
@@ -22,6 +23,7 @@ const router = createBrowserRouter(
       <Route path="/About" element={<About />}></Route>
       <Route path="/User-Login" element={<Login />}></Route>
       <Route path="/User-Register" element={<Register />}></Route>
+      <Route path="/Verify-User" element={<VerifyUser />}></Route>
     </Route>
   )
 );

@@ -42,7 +42,7 @@
     background-color: transparent;
     font-size: 14px;
     font-weight: 400;
-    margin: 1rem 0;
+    margin: 0.5rem 0;
 }
 
 .input-field input:focus {
@@ -79,4 +79,19 @@
 
 .links a {
     color: blue;
+}
+
+.signup-btn {
+    background: #22b6af;
+    color: #fafdff;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 0.6rem 3rem;
+    letter-spacing: 1px;
+    font-family: "Livvic", sans-serif;
+    border: none;
+}
+
+.signup-btn i {
+    font-size: 24px;
 }

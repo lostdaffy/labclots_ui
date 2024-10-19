@@ -1,0 +1,14 @@
+.verify-btn {
+    background: #22b6af;
+    color: #fafdff;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 0.6rem 3rem;
+    letter-spacing: 1px;
+    font-family: "Livvic", sans-serif;
+    border: none;
+}
+
+.verify-btn i {
+    font-size: 24px;
+}
