@@ -5,9 +5,10 @@
     align-items: center;
     justify-content: space-between;
     background: #fafdff;
+    position: fixed;
 }
 
-.navbar h1{
+.navbar h1 {
     color: #22b6af;
 }
 
@@ -23,6 +24,11 @@
     font-family: "Livvic", sans-serif;
 }
 
+.nav-links a:hover {
+    color: #22b6af;
+    transition: all 0.3s ease-in-out;
+}
+
 .login-btn {
     background: #22b6af;
     color: #fafdff;
@@ -36,4 +42,3 @@
 .login-btn i {
     font-size: 24px;
 }
-
