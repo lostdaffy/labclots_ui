@@ -1,36 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import useAuthStore from "../../store/authStore";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const [labEmail, setLabEmail] = useState();
+  const [labPassword, setLabPassword] = useState();
+  const { login, isLoading, error } = useAuthStore();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await login(labEmail, labPassword);
+    navigate("/Dashboard");
+  };
+
   return (
     <>
       <div className="user-login">
         <div className="login-form">
           <div className="form-wrap">
             <h2>Login Lab</h2>
-            <form>
+
+            <form onSubmit={handleSubmit}>
               <div className="input-field">
-                <label htmlFor="email">Email</label>
+                <label htmlFor="labEmail">Email</label>
                 <input
-                  type="text"
-                  placeholder="Enter Email"
-                  name="email"
+                  type="email"
+                  placeholder="Enter Lab Email"
+                  name="labEmail"
+                  onChange={(e) => setLabEmail(e.target.value)}
                   required
                 />
               </div>
 
               <div className="input-field">
-                <label htmlFor="password">Password</label>
+                <label htmlFor="labPassword">Password</label>
                 <input
                   type="password"
                   placeholder="Enter Password"
-                  name="password"
+                  name="labPassword"
+                  onChange={(e) => setLabPassword(e.target.value)}
                   required
                 />
               </div>
 
-              <Link className="login-btn">Log in</Link>
+              <button className="login-btn">Log in</button>
+
               <div className="links">
                 <Link href="#">Forgot password?</Link>
                 <Link to="/User-Register">Create New Account</Link>

@@ -1,18 +1,23 @@
 import React, { useState } from "react";
 import "./VerifyUser.css";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import useAuthStore from "../../store/authStore";
 
 const VerifyUser = () => {
   const navigate = useNavigate();
-  const [verificationToken, setVerificationToken] = useState();
+  const [verificationCode, setVerificationCode] = useState();
 
-  const verifyCode = (e) => {
+  const { verifyEmail, error, isLoading } = useAuthStore();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    axios.post("http://localhost:8080/api/v1/users/verify-email", {
-      verificationToken,
-    });
-    navigate("/User-Login");
+
+    try {
+      await verifyEmail(verificationCode);
+      navigate("/User-Login");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -22,18 +27,18 @@ const VerifyUser = () => {
           <div className="form-wrap">
             <h2>OTP Verification</h2>
             <p>Enter the 6 digit verification code recevied on your Email ID</p>
-            <form onSubmit={verifyCode}>
+            <form onSubmit={handleSubmit}>
               <div className="input-field">
                 <input
                   type="text"
                   placeholder="Enter OTP"
-                  name="verificationToken"
-                  onChange={(e) => setVerificationToken(e.target.value)}
+                  name="verificationCode"
+                  onChange={(e) => setVerificationCode(e.target.value)}
                   required
                 />
               </div>
               <button type="submit" className="verify-btn">
-                Verify
+              {isLoading ? <i className="ri-restart-line"></i> : "Verify"}
               </button>
             </form>
           </div>

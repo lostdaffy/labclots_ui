@@ -1,6 +1,7 @@
 import React from "react";
 import "./Home.css";
 import { Link } from "react-router-dom";
+import report_icon from "../../assets/report-icon.png";
 
 const Home = () => {
   return (
@@ -8,7 +9,7 @@ const Home = () => {
       <div className="hero">
         <div className="hero-wrap">
           <div className="hero-text">
-            <span className="video-heading">
+            <span className="hero-heading">
               <i className="ri-arrow-right-double-line"></i>
               Online Lab Reporting Software
             </span>
@@ -38,14 +39,79 @@ const Home = () => {
             <div className="hero-btn">
               <li>
                 <Link to="/User-Login" className="login-btn">
-                <i className="ri-play-circle-line"> </i>Intro
+                  <i className="ri-play-circle-line"> </i>Intro
                 </Link>
               </li>
               <li>
                 <Link to="/User-Login" className="login-btn">
-                <i className="ri-phone-line"></i> Contact
+                  <i className="ri-phone-line"></i> Contact
                 </Link>
               </li>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="about-component">
+        <div className="about-colums">
+          <div className="about-colums-1">
+            <div className="about-colum-1-text">
+              <span>
+                <i className="ri-arrow-right-double-line"></i> About us
+              </span>
+              <h2>
+                Streamlined Online Lab Reporting Software for Efficient Data
+                Management, Collaboration, and Real-Time Analysis
+              </h2>
+              <p>
+                Our online lab reporting software simplifies data management
+                with real-time analysis and secure sharing. It enhances
+                accuracy, collaboration, and productivity through customizable
+                templates and automated workflows.
+              </p>
+
+              <div className="about-component-btn">
+                <Link to="/About">About us</Link>
+              </div>
+            </div>
+          </div>
+          <div className="about-colums-2">
+            <div className="about-colum-2-text">
+              
+              <div>
+                <div className="about-icon">
+                  <img src={report_icon} alt="Report Icon" />
+                </div>
+                <div>
+                  <h4>Real-Time Data Entry</h4>
+                  <p>
+                    This feature often includes data validation tools and
+                    customizable templates for various test types, making data
+                    entry accurate and efficient.
+                  </p>
+                </div>
+              </div>
+
+              <div>
+                <div>
+                  <img src="" alt="" />
+                </div>
+                <div>
+                  <h4></h4>
+                  <p></p>
+                </div>
+              </div>
+
+              <div>
+                <div>
+                  <img src="" alt="" />
+                </div>
+                <div>
+                  <h4></h4>
+                  <p></p>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>

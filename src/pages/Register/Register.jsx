@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Register.css";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuthStore from "../../store/authStore";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -10,15 +10,17 @@ const Register = () => {
   const [labEmail, setLabEmail] = useState();
   const [labPassword, setLabPassword] = useState();
 
-  const handleSubmit = (e) => {
+  const { register, error, isLoading } = useAuthStore();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    axios.post("http://localhost:8080/api/v1/users/register", {
-      ownerName,
-      labName,
-      labEmail,
-      labPassword,
-    });
-    navigate("/Verify-User");
+
+    try {
+      await register(ownerName, labName, labEmail, labPassword);
+      navigate("/Verify-User");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -30,7 +32,7 @@ const Register = () => {
 
             <form onSubmit={handleSubmit}>
               <div className="input-field">
-                <label htmlFor="ownerName">Name</label>
+                <label htmlFor="ownerName">Name*</label>
                 <input
                   type="text"
                   placeholder="Lab Owner Name"
@@ -41,7 +43,7 @@ const Register = () => {
               </div>
 
               <div className="input-field">
-                <label htmlFor="labName">Lab Name</label>
+                <label htmlFor="labName">Lab Name*</label>
                 <input
                   type="text"
                   placeholder="Enter Lab Name"
@@ -52,7 +54,7 @@ const Register = () => {
               </div>
 
               <div className="input-field">
-                <label htmlFor="labEmail">Email</label>
+                <label htmlFor="labEmail">Email*</label>
                 <input
                   type="email"
                   placeholder="Enter Lab Email"
@@ -63,18 +65,26 @@ const Register = () => {
               </div>
 
               <div className="input-field">
-                <label htmlFor="labPassword">Password</label>
+                <label htmlFor="labPassword">Password*</label>
                 <input
                   type="password"
                   placeholder="Enter Password"
                   name="labPassword"
                   onChange={(e) => setLabPassword(e.target.value)}
+                  disabled={isLoading}
                   required
                 />
               </div>
+
+              {error && <p>{error}</p>}
+
               <button type="submit" className="signup-btn">
-                Sign up
+                {isLoading ? <i className="ri-restart-line"></i> : "Sign Up"}
               </button>
+
+              <div className="links">
+                <Link to="/User-Register">Create New Account</Link>
+              </div>
             </form>
           </div>
         </div>
