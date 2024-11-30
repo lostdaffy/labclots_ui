@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import useAuthStore from "../../store/authStore";
+import "./Login.css";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -13,7 +12,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await login(labEmail, labPassword);
-    navigate("/Dashboard");
+    navigate("/dashboard");
   };
 
   return (
@@ -50,7 +49,7 @@ const Login = () => {
 
               <div className="links">
                 <Link href="#">Forgot password?</Link>
-                <Link to="/User-Register">Create New Account</Link>
+                <Link to="/user-register">Create New Account</Link>
               </div>
             </form>
           </div>

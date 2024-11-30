@@ -17,7 +17,7 @@ const Register = () => {
 
     try {
       await register(ownerName, labName, labEmail, labPassword);
-      navigate("/Verify-User");
+      navigate("/verify-user");
     } catch (error) {
       console.log(error);
     }
@@ -83,7 +83,7 @@ const Register = () => {
               </button>
 
               <div className="links">
-                <Link to="/User-Register">Create New Account</Link>
+                <Link to="/user-register">Create New Account</Link>
               </div>
             </form>
           </div>

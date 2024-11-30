@@ -1,14 +1,135 @@
-import Navbar from "./components/Navbar/Navbar";
-import { Outlet } from "react-router-dom";
-import Footer from "./components/Footer/Footer";
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/Home/Home.jsx";
+import About from "./pages/About/About.jsx";
+import Login from "./pages/Login/Login.jsx";
+import Dashboard from "./pages/Dashboard/Dashboard.jsx";
+import Register from "./pages/Register/Register.jsx";
+import VerifyUser from "./pages/VerifyUser/VerifyUser.jsx";
+import Navbar from "./components/layout/Navbar/Navbar.jsx";
+import Footer from "./components/layout/Footer/Footer.jsx";
+import useAuthStore from "./store/authStore.js";
+import { useEffect } from "react";
+
+import { Navigate } from "react-router-dom";
 
 function App() {
+  const { isCheckingAuth, checkAuth, isAuthenticated, user } = useAuthStore();
+
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
+
+  const ProtectedRoute = ({ children }) => {
+    const { isAuthenticated, user } = useAuthStore();
+
+    if (!isAuthenticated) {
+      return <Navigate to="/user-login" replace />;
+    }
+
+    if (!user.isVerified) {
+      return <Navigate to="/verify-user" replace />;
+    }
+
+    return children;
+  };
+
+  const RedirectAuthenticatedUser = ({ children }) => {
+    const { isAuthenticated, user } = useAuthStore();
+
+    if (isAuthenticated && user.isVerified) {
+      return <Navigate to="/dashboard" replace />;
+    }
+
+    return children;
+  };
+
   return (
-    <>
-      <Navbar />
-      <Outlet />
-      <Footer />
-    </>
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <>
+            <Navbar />
+            <Home />
+            <Footer />
+          </>
+        }
+      />
+
+      <Route
+        path="/home"
+        element={
+          <>
+            <Navbar />
+            <Home />
+            <Footer />
+          </>
+        }
+      />
+
+      <Route
+        path="/about"
+        element={
+          <>
+            <Navbar />
+            <About />
+            <Footer />
+          </>
+        }
+      />
+
+      <Route
+        path="/user-login"
+        element={
+          <RedirectAuthenticatedUser>
+            <>
+              <Navbar />
+              <Login />
+              <Footer />
+            </>
+          </RedirectAuthenticatedUser>
+        }
+      />
+
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
+            <>
+              <Navbar />
+              <Dashboard />
+              <Footer />
+            </>
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/user-register"
+        element={
+          <RedirectAuthenticatedUser>
+            <>
+              <Navbar />
+              <Register />
+              <Footer />
+            </>
+          </RedirectAuthenticatedUser>
+        }
+      />
+
+      <Route
+        path="/verify-user"
+        element={
+          <RedirectAuthenticatedUser>
+            <>
+              <Navbar />
+              <VerifyUser />
+              <Footer />
+            </>
+          </RedirectAuthenticatedUser>
+        }
+      />
+    </Routes>
   );
 }
 

@@ -14,7 +14,7 @@ const VerifyUser = () => {
 
     try {
       await verifyEmail(verificationCode);
-      navigate("/User-Login");
+      navigate("/user-login");
     } catch (error) {
       console.log(error);
     }
