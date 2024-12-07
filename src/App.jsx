@@ -9,8 +9,9 @@ import Navbar from "./components/layout/Navbar/Navbar.jsx";
 import Footer from "./components/layout/Footer/Footer.jsx";
 import useAuthStore from "./store/authStore.js";
 import { useEffect } from "react";
-
 import { Navigate } from "react-router-dom";
+import Sidebar from "./pages/Dashboard/Sidebar.jsx";
+import AddPatient from "./pages/Dashboard/AddPatient.jsx";
 
 function App() {
   const { isCheckingAuth, checkAuth, isAuthenticated, user } = useAuthStore();
@@ -26,7 +27,7 @@ function App() {
       return <Navigate to="/user-login" replace />;
     }
 
-    if (!user.isVerified) {
+    if (isAuthenticated && !user.isVerified) {
       return <Navigate to="/verify-user" replace />;
     }
 
@@ -83,9 +84,7 @@ function App() {
         element={
           <RedirectAuthenticatedUser>
             <>
-              <Navbar />
               <Login />
-              <Footer />
             </>
           </RedirectAuthenticatedUser>
         }
@@ -96,9 +95,24 @@ function App() {
         element={
           <ProtectedRoute>
             <>
-              <Navbar />
-              <Dashboard />
-              <Footer />
+              <div className="d-flex">
+                <Sidebar />
+                <Dashboard />
+              </div>
+            </>
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/dashboard/add-patient"
+        element={
+          <ProtectedRoute>
+            <>
+              <div className="d-flex">
+                <Sidebar />
+                <AddPatient />
+              </div>
             </>
           </ProtectedRoute>
         }
@@ -109,9 +123,7 @@ function App() {
         element={
           <RedirectAuthenticatedUser>
             <>
-              <Navbar />
               <Register />
-              <Footer />
             </>
           </RedirectAuthenticatedUser>
         }

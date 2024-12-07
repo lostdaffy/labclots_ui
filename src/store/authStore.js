@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/api/v1/users/";
+const API_URL = "http://localhost:8080/api/v1/users";
 
 axios.defaults.withCredentials = true;
 
@@ -23,7 +23,7 @@ const useAuthStore = create((set) => ({
       });
 
       set({
-        user: response.data.user,
+        user: response.data.data,
         isAuthenticated: true,
         isLoading: false,
       });
@@ -43,11 +43,18 @@ const useAuthStore = create((set) => ({
         verificationCode,
       });
 
-      set({ user: response.data.user, isAuthenticated: true, isLoading: false });
-      return response.data
+      set({
+        user: response.data.data,
+        isAuthenticated: true,
+        isLoading: false,
+      });
 
+      return response.data.data;
     } catch (error) {
-      set({ error: error.response.data.message || "Error verifying email", isLoading: false });
+      set({
+        error: error.response.data.message || "Error verifying email",
+        isLoading: false,
+      });
 
       throw error;
     }
@@ -60,34 +67,55 @@ const useAuthStore = create((set) => ({
       const response = await axios.post(`${API_URL}/User-Login`, {
         labEmail,
         labPassword,
-      })
+      });
 
       set({
         isAuthenticated: true,
         user: response.data.data.user,
         error: null,
-        isLoading: false
-      })
-
+        isLoading: false,
+      });
     } catch (error) {
-      set({ error: error.response?.data?.message || "Error logging in", isLoading: false });
+      set({
+        error: error.response?.data?.message || "Error logging in",
+        isLoading: false,
+      });
       throw error;
     }
   },
 
   checkAuth: async () => {
-    set({ isCheckingAuth: true, error: null })
+    set({ isCheckingAuth: true, error: null });
 
     try {
       const response = await axios.get(`${API_URL}/check-auth`);
 
-      set({ user: response.data.user, isAuthenticated: true, isCheckingAuth: false });
-
+      set({
+        user: response.data.user,
+        isAuthenticated: true,
+        isCheckingAuth: false,
+      });
     } catch (error) {
       set({ error: null, isCheckingAuth: false, isAuthenticated: false });
     }
+  },
 
-  }
+  logoutUser: async () => {
+    set({ isLoading: true, error: null });
+
+    try {
+      await axios.post(`${API_URL}/user-logout`);
+      set({
+        user: null,
+        isAuthenticated: false,
+        error: null,
+        isLoading: false,
+      });
+    } catch (error) {
+      set({ error: "Error logging out", isLoading: false });
+      throw error;
+    }
+  },
 }));
 
 export default useAuthStore;

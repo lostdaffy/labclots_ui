@@ -83,7 +83,7 @@ const Register = () => {
               </button>
 
               <div className="links">
-                <Link to="/user-register">Create New Account</Link>
+                <Link to="/user-login">Already have an account?</Link>
               </div>
             </form>
           </div>
