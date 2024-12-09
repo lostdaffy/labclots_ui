@@ -1,17 +1,16 @@
-import { Route, Routes } from "react-router-dom";
-import Home from "./pages/Home/Home.jsx";
+import { useEffect } from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
+import Footer from "./components/layout/Footer/Footer.jsx";
+import Navbar from "./components/layout/Navbar/Navbar.jsx";
 import About from "./pages/About/About.jsx";
-import Login from "./pages/Login/Login.jsx";
+import AddPatient from "./pages/Dashboard/AddPatient.jsx";
 import Dashboard from "./pages/Dashboard/Dashboard.jsx";
+import Sidebar from "./pages/Dashboard/Sidebar.jsx";
+import Home from "./pages/Home/Home.jsx";
+import Login from "./pages/Login/Login.jsx";
 import Register from "./pages/Register/Register.jsx";
 import VerifyUser from "./pages/VerifyUser/VerifyUser.jsx";
-import Navbar from "./components/layout/Navbar/Navbar.jsx";
-import Footer from "./components/layout/Footer/Footer.jsx";
 import useAuthStore from "./store/authStore.js";
-import { useEffect } from "react";
-import { Navigate } from "react-router-dom";
-import Sidebar from "./pages/Dashboard/Sidebar.jsx";
-import AddPatient from "./pages/Dashboard/AddPatient.jsx";
 
 function App() {
   const { isCheckingAuth, checkAuth, isAuthenticated, user } = useAuthStore();
@@ -93,28 +92,28 @@ function App() {
       <Route
         path="/dashboard"
         element={
-          <ProtectedRoute>
+          // <ProtectedRoute>
             <>
               <div className="d-flex">
                 <Sidebar />
                 <Dashboard />
               </div>
             </>
-          </ProtectedRoute>
+          // </ProtectedRoute>
         }
       />
 
       <Route
         path="/dashboard/add-patient"
         element={
-          <ProtectedRoute>
+          // <ProtectedRoute>
             <>
               <div className="d-flex">
                 <Sidebar />
-                <AddPatient />
+                <AddPatient /> 
               </div>
             </>
-          </ProtectedRoute>
+          // </ProtectedRoute>
         }
       />
 
