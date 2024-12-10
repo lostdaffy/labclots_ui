@@ -92,28 +92,28 @@ function App() {
       <Route
         path="/dashboard"
         element={
-          // <ProtectedRoute>
+          <ProtectedRoute>
             <>
               <div className="d-flex">
                 <Sidebar />
                 <Dashboard />
               </div>
             </>
-          // </ProtectedRoute>
+          </ProtectedRoute>
         }
       />
 
       <Route
         path="/dashboard/add-patient"
         element={
-          // <ProtectedRoute>
+          <ProtectedRoute>
             <>
               <div className="d-flex">
                 <Sidebar />
                 <AddPatient /> 
               </div>
             </>
-          // </ProtectedRoute>
+          </ProtectedRoute>
         }
       />
 
