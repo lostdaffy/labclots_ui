@@ -12,10 +12,10 @@ import Register from "./pages/Register/Register.jsx";
 import VerifyUser from "./pages/VerifyUser/VerifyUser.jsx";
 import useAuthStore from "./store/authStore.js";
 
-function App() {
+function App() { 
   const { isCheckingAuth, checkAuth, isAuthenticated, user } = useAuthStore();
 
-  useEffect(() => {
+  useEffect(() => { 
     checkAuth();
   }, [checkAuth]);
 
