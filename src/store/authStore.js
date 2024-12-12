@@ -116,6 +116,28 @@ const useAuthStore = create((set) => ({
       throw error;
     }
   },
+
+  addPatient: async (patientName) => {
+    set({ isLoading: true, error: null });
+
+    try {
+      const response = await axios.post(`${API_URL}/add-patient`, {
+        patientName
+      });
+
+      set({
+        user: response.data.data,
+        isAuthenticated: true,
+        isLoading: false,
+      });
+    } catch (error) {
+      set({
+        error: error.response.data.user || "Error Signing up",
+        isLoading: false,
+      });
+      throw error;
+    }
+  }
 }));
 
 export default useAuthStore;
