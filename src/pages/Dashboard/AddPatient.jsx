@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useAuthStore from "../../store/authStore";
 const AddPatient = () => {
   const navigate = useNavigate();
 
@@ -16,13 +17,38 @@ const AddPatient = () => {
   const [discount, setDiscount] = useState();
   const [discountBy, setDiscountBy] = useState();
 
+  const { addPatient, error, isLoading } = useAuthStore();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      await addPatient(
+        patientName,
+        patientAge,
+        patientGender,
+        patientEmail,
+        patientMobile,
+        patientAddress,
+        referBy,
+        sampleBy,
+        sample,
+        amount,
+        discount,
+        discountBy
+      );
+      navigate("/dashboard");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <section className="patientMain">
       <div className="main-wrapper">
         <h3>Patient Registration</h3>
 
-        <form class="form-card" onSubmit="">
+        <form class="form-card" onSubmit={handleSubmit}>
           <div className="section-flex">
             <div class="form-section">
               <div class="form-group">

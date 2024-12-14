@@ -57,11 +57,11 @@ const Home = () => {
           <div className="about-colums-1">
             <div className="about-colum-1-text">
               <span>
-                <i className="ri-arrow-right-double-line"></i> About us
+                <i className="ri-arrow-right-double-line"></i> BETTER FOR YOU
               </span>
               <h2>
                 Streamlined Online Lab Reporting Software for Efficient Data
-                Management, Collaboration, and Real-Time Analysis
+                Management
               </h2>
               <p>
                 Our online lab reporting software simplifies data management
@@ -69,6 +69,12 @@ const Home = () => {
                 accuracy, collaboration, and productivity through customizable
                 templates and automated workflows.
               </p>
+
+              <div className="about-bullet">
+                <h5><i class="ri-check-fill"></i> Lorem ipsum isw dil</h5>
+                <h5><i class="ri-check-fill"></i> Lorem ipsum isw dil</h5>
+                <h5><i class="ri-check-fill"></i> Lorem ipsum isw dil</h5>
+              </div>
 
               <div className="about-component-btn">
                 <Link to="/About">About us</Link>
@@ -78,11 +84,11 @@ const Home = () => {
           <div className="about-colums-2">
             <div className="about-colum-2-text">
               
-              <div>
+              <div className="about-wrap">
                 <div className="about-icon">
                   <img src={report_icon} alt="Report Icon" />
                 </div>
-                <div>
+                <div className="about-icon-text">
                   <h4>Real-Time Data Entry</h4>
                   <p>
                     This feature often includes data validation tools and
@@ -92,25 +98,35 @@ const Home = () => {
                 </div>
               </div>
 
-              <div>
-                <div>
-                  <img src="" alt="" />
+              <div className="about-wrap">
+                <div className="about-icon">
+                  <img src={report_icon} alt="Report Icon" />
                 </div>
-                <div>
-                  <h4></h4>
-                  <p></p>
+                <div className="about-icon-text">
+                  <h4>Real-Time Data Entry</h4>
+                  <p>
+                    This feature often includes data validation tools and
+                    customizable templates for various test types, making data
+                    entry accurate and efficient.
+                  </p>
                 </div>
               </div>
 
-              <div>
-                <div>
-                  <img src="" alt="" />
+              <div className="about-wrap">
+                <div className="about-icon">
+                  <img src={report_icon} alt="Report Icon" />
                 </div>
-                <div>
-                  <h4></h4>
-                  <p></p>
+                <div className="about-icon-text">
+                  <h4>Real-Time Data Entry</h4>
+                  <p>
+                    This feature often includes data validation tools and
+                    customizable templates for various test types, making data
+                    entry accurate and efficient.
+                  </p>
                 </div>
               </div>
+
+              
 
             </div>
           </div>

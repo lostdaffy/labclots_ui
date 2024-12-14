@@ -74,6 +74,7 @@ li {
     align-items: center;
     justify-content: center;
     padding: 0 10rem;
+    background-color: #f6f6f6;
 }
 
 .about-colums {
@@ -87,16 +88,18 @@ li {
 
 .about-colum-1-text>span {
     color: #22b6af;
-    font-size: 20px;
-    font-weight: 500;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 1px;
 
 }
 
 .about-colum-1-text h2 {
-    margin: 1rem 0;
+    margin: 1.5rem 0;
     color: #1f2632;
-    font-size: 3rem;
-    font-weight: 600;
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
 .about-colum-1-text p {
@@ -120,11 +123,59 @@ li {
 }
 
 .about-colums-2 {
+    display: flex;
+    align-items: center;
     flex-basis: 50%;
+}
+
+.about-wrap {
+    display: flex;
+    gap: 2rem;
+}
+
+.about-colum-2-text .about-wrap {
+    padding: 2rem 0;
+}
+
+.about-icon {
+    width: 30%;
 }
 
 .about-icon img {
     width: 100%;
+}
+
+
+.about-bullet {
+    padding-top: 2rem;
+}
+
+.about-bullet h5 {
+    padding-bottom: 1rem;
+    font-size: 16px;
+    font-weight: 500;
+    color: #1f2632;
+}
+
+.about-bullet h5 i {
+    color: #22b6af;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.about-icon-text h4 {
+    font-size: 22px;
+    font-weight: 500;
+    color: #1f2632;
+    border-bottom: 1px solid #1f2632;
+    padding-bottom: 0.5rem;
+}
+
+.about-icon-text p {
+    font-size: 16px;
+    font-weight: 400;
+    color: #1f2632;
+    padding: 0.5rem 0;
 }
 
 /* /about-component */

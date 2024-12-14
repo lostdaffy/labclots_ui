@@ -117,12 +117,36 @@ const useAuthStore = create((set) => ({
     }
   },
 
-  addPatient: async (patientName) => {
+  addPatient: async (
+    patientName,
+    patientAge,
+    patientGender,
+    patientEmail,
+    patientMobile,
+    patientAddress,
+    referBy,
+    sampleBy,
+    sample,
+    amount,
+    discount,
+    discountBy
+  ) => {
     set({ isLoading: true, error: null });
 
     try {
       const response = await axios.post(`${API_URL}/add-patient`, {
-        patientName
+        patientName,
+        patientAge,
+        patientGender,
+        patientEmail,
+        patientMobile,
+        patientAddress,
+        referBy,
+        sampleBy,
+        sample,
+        amount,
+        discount,
+        discountBy,
       });
 
       set({
@@ -137,7 +161,7 @@ const useAuthStore = create((set) => ({
       });
       throw error;
     }
-  }
+  },
 }));
 
 export default useAuthStore;
