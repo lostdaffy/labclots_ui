@@ -132,6 +132,10 @@ const Home = () => {
           </div>
         </div>
       </div>
+
+      <div className="app-details">
+        <div className="app-wrap"></div>
+      </div>
     </div>
   );
 };
