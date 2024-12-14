@@ -1,7 +1,9 @@
 import React from "react";
-import "./Home.css";
 import { Link } from "react-router-dom";
 import report_icon from "../../assets/report-icon.png";
+import imge from "../../assets/imge.jpg";
+
+import "./Home.css";
 
 const Home = () => {
   return (
@@ -133,9 +135,43 @@ const Home = () => {
         </div>
       </div>
 
+     
+{/*  App Details, Third Sections  */}
+
       <div className="app-details">
-        <div className="app-wrap"></div>
+      <div className="app-wrap">
+
+        <h2 className="title">It’s all about the data.</h2>
+        <p className="subtitle">
+          Vestibulum morbi blandit cursus risus.Augue neque gravida <br /> in fermentum
+          et sollicitudin ac orci phasellus.  Massa massa ultricies mi quis
+          hendrerit.
+        </p>
+        <div className="test-section"> 
+
+          <div className="test-category">
+            <h3>Paternity Testing</h3>
+            <ul>
+              <li>⭐ Complete Blood Count</li>
+              <li> ⭐ Blood Sugar–Fasting</li>
+            </ul>
+          </div>
+          <div className="test-category"> 
+            <h3>Biochemistry Tests</h3>
+            <ul>
+              <li> ⭐ Complete Blood Count</li>
+              <li> ⭐ Blood Sugar–Fasting</li>
+            </ul>
+          </div>
+       
+          </div>
+      <div className="image-section"> 
+      <img src={imge} alt="" />
+        
       </div>
+     
+    </div>
+    </div>
     </div>
   );
 };
