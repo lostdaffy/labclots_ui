@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import report_icon from "../../assets/report-icon.png";
 import imge from "../../assets/imge.jpg";
+import report_icon from "../../assets/report-icon.png";
 
 import "./Home.css";
 
@@ -73,9 +73,15 @@ const Home = () => {
               </p>
 
               <div className="about-bullet">
-                <h5><i class="ri-check-fill"></i> Lorem ipsum isw dil</h5>
-                <h5><i class="ri-check-fill"></i> Lorem ipsum isw dil</h5>
-                <h5><i class="ri-check-fill"></i> Lorem ipsum isw dil</h5>
+                <h5>
+                  <i class="ri-check-fill"></i> Lorem ipsum isw dil
+                </h5>
+                <h5>
+                  <i class="ri-check-fill"></i> Lorem ipsum isw dil
+                </h5>
+                <h5>
+                  <i class="ri-check-fill"></i> Lorem ipsum isw dil
+                </h5>
               </div>
 
               <div className="about-component-btn">
@@ -85,7 +91,6 @@ const Home = () => {
           </div>
           <div className="about-colums-2">
             <div className="about-colum-2-text">
-              
               <div className="about-wrap">
                 <div className="about-icon">
                   <img src={report_icon} alt="Report Icon" />
@@ -127,51 +132,64 @@ const Home = () => {
                   </p>
                 </div>
               </div>
-
-              
-
             </div>
           </div>
         </div>
       </div>
 
-     
-{/*  App Details, Third Sections  */}
+      {/*  App Details, Third Sections  */}
 
       <div className="app-details">
-      <div className="app-wrap">
+        <div className="app-wrap">
+          <div className="text-sec">
+            <h2 className="title">
+              BloPath – Your Most Trusted Healthcare Partner!{" "}
+            </h2>
+            <p className="subtitle">
+              We are one of the oldest players who focused on bringing quality
+              diagnosis services by providing accurate and timely test results
+              to our valued customers. With a commitment to excellence and a
+              wide range of comprehensive test panels, Dr Lal PathLabs is your
+              trusted partner in promoting good health and overall well-bein
+            </p>
+            <div className="test-section">
+              <div className="test-category">
+                <h3>Quality and Accuracy </h3>
+                <ul>
+                  <li>
+                    ⭐ At BloPath, we prioritize quality as one of our <br />
+                    driving values.  Our labs are NABL (National Accreditation
+                    Board for Testing and  Calibration Laboratories)
+                  </li>
+                  <li> ⭐ CAP
+                    (College of American Pathologists) accredited,<br /> and we adhere
+                    to stringent quality checks. Every test at BloPath 
+                    undergoes 50+ quality and process checks, <br /> end to end from
+                    sample collection to report.</li>
+                </ul>
+              </div>
+              <div className="test-category">
+                <h3>Embracing Innovation </h3>
+                <ul>
+                  <li>
+                    ⭐ We have a dedicated team of doctors <br /> ensuring that
+                    we bring in all technologically relevant advancements, tests
+                  </li>
+                  <li>
+                    ⭐ quality checks and processes in each test we do.
+                    We invest in research and development <br /> to bring you
+                    the latest diagnostic solutions and breakthroughs.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-        <h2 className="title">It’s all about the data.</h2>
-        <p className="subtitle">
-          Vestibulum morbi blandit cursus risus.Augue neque gravida <br /> in fermentum
-          et sollicitudin ac orci phasellus.  Massa massa ultricies mi quis
-          hendrerit.
-        </p>
-        <div className="test-section"> 
-
-          <div className="test-category">
-            <h3>Paternity Testing</h3>
-            <ul>
-              <li>⭐ Complete Blood Count</li>
-              <li> ⭐ Blood Sugar–Fasting</li>
-            </ul>
+          <div className="image-section">
+            <img src={imge} alt="" />
           </div>
-          <div className="test-category"> 
-            <h3>Biochemistry Tests</h3>
-            <ul>
-              <li> ⭐ Complete Blood Count</li>
-              <li> ⭐ Blood Sugar–Fasting</li>
-            </ul>
-          </div>
-       
-          </div>
-      <div className="image-section"> 
-      <img src={imge} alt="" />
-        
+        </div>
       </div>
-     
-    </div>
-    </div>
     </div>
   );
 };
