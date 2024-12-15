@@ -74,13 +74,16 @@ const Home = () => {
 
               <div className="about-bullet">
                 <h5>
-                  <i class="ri-check-fill"></i> Lorem ipsum isw dil
+                  <i class="ri-check-fill"></i> Eliminates the risk of data loss
+                  due to system crashes.
                 </h5>
                 <h5>
-                  <i class="ri-check-fill"></i> Lorem ipsum isw dil
+                  <i class="ri-check-fill"></i> Supports multiple labs under one
+                  software system with unique dashboards for each.
                 </h5>
                 <h5>
-                  <i class="ri-check-fill"></i> Lorem ipsum isw dil
+                  <i class="ri-check-fill"></i> Automatic report generation for
+                  tests like blood tests, imaging, and biochemistry.
                 </h5>
               </div>
 
@@ -110,11 +113,11 @@ const Home = () => {
                   <img src={report_icon} alt="Report Icon" />
                 </div>
                 <div className="about-icon-text">
-                  <h4>Real-Time Data Entry</h4>
+                  <h4>Patient Record Management</h4>
                   <p>
-                    This feature often includes data validation tools and
-                    customizable templates for various test types, making data
-                    entry accurate and efficient.
+                    Stores and organizes patient data securely Allows easy
+                    retrieval of past reports for reference Tracks patient
+                    history for doctors and lab technicians.
                   </p>
                 </div>
               </div>
@@ -124,11 +127,11 @@ const Home = () => {
                   <img src={report_icon} alt="Report Icon" />
                 </div>
                 <div className="about-icon-text">
-                  <h4>Real-Time Data Entry</h4>
+                  <h4> Real-Time Access </h4>
                   <p>
-                    This feature often includes data validation tools and
-                    customizable templates for various test types, making data
-                    entry accurate and efficient.
+                    Patients and doctors can access test results online through
+                    secure portals. Notifications or SMS alerts for report
+                    readiness.
                   </p>
                 </div>
               </div>
@@ -143,42 +146,40 @@ const Home = () => {
         <div className="app-wrap">
           <div className="text-sec">
             <h2 className="title">
-              BloPath – Your Most Trusted Healthcare Partner!{" "}
+              BloPath – Your Most Trusted Healthcare Partner!
             </h2>
             <p className="subtitle">
-              We are one of the oldest players who focused on bringing quality
-              diagnosis services by providing accurate and timely test results
-              to our valued customers. With a commitment to excellence and a
-              wide range of comprehensive test panels, Dr Lal PathLabs is your
-              trusted partner in promoting good health and overall well-bein
+              Online lab reporting software has become an essential tool for
+              pathology labs, diagnostic centers, and healthcare facilities. It
+              streamlines processes like patient data management, report
+              generation, and record maintenance, enabling labs to operate
+              efficiently and securely.
             </p>
             <div className="test-section">
               <div className="test-category">
-                <h3>Quality and Accuracy </h3>
+                <h3> Dashboard for Labs </h3>
                 <ul>
                   <li>
-                    ⭐ At BloPath, we prioritize quality as one of our <br />
-                    driving values.  Our labs are NABL (National Accreditation
-                    Board for Testing and  Calibration Laboratories)
+                    ⭐ Individual dashboards for multiple labs to manage their
+                    operations separately.
                   </li>
-                  <li> ⭐ CAP
-                    (College of American Pathologists) accredited,<br /> and we adhere
-                    to stringent quality checks. Every test at BloPath 
-                    undergoes 50+ quality and process checks, <br /> end to end from
-                    sample collection to report.</li>
+                  <li>
+                    {" "}
+                    ⭐ Provides data backups, ensuring availability even during
+                    disasters.
+                  </li>
                 </ul>
               </div>
               <div className="test-category">
-                <h3>Embracing Innovation </h3>
+                <h3>Multi-Lab Functionality</h3>
                 <ul>
                   <li>
-                    ⭐ We have a dedicated team of doctors <br /> ensuring that
-                    we bring in all technologically relevant advancements, tests
+                    ⭐ Supports multiple labs under one software system with
+                    unique dashboards for each.
                   </li>
                   <li>
-                    ⭐ quality checks and processes in each test we do.
-                    We invest in research and development <br /> to bring you
-                    the latest diagnostic solutions and breakthroughs.
+                    ⭐ Data segregation ensures privacy and independence of
+                    operations.
                   </li>
                 </ul>
               </div>
