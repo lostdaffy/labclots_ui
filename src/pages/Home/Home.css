@@ -191,43 +191,48 @@ li {
     display: flex;
     align-items: center;
     justify-content: center;
-    
   }
-  
-  .app-wrap {
+  .app-wrap { 
+    display: flex;
     width: 80%;
     height: 80vh;
     background-color: #fff;
     border-radius: 30px;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 3.5rem;
   }
-  
+  .text-sec{
+    flex-basis: 70%;
+    padding: 1.8rem;
+  }
   .title {
-    font-size: 24px;
-    font-weight: bold;
-    color: #22b6af;
-    margin-top: 13%;
-    margin-left: 9%;
-  }
+    font-size: 1.7rem;
+    font-weight: 900;
+    color: #22b6af; 
+    margin-bottom: 1rem;
+
+  } 
   .subtitle {
-    font-size: 16px;
+    font-size: 1rem;
     color: #7f8c8d;
-    margin-top: 14px;
-    line-height: 1.6;
-    margin-left: 9%;
+    font-weight: 400;
+    line-height: 1.4;
+    margin-bottom: 3.7rem;
+
   }
   .test-section {
     display: flex;
     gap: 40px;
-    position: absolute;
-    margin-top: 5%;
-    margin-left: 7.5%;
 
   }
-  
+
   .test-category h3 {
-    font-size: 18px;
+    font-size: 1.3rem;
     color: #22b6af;
-    margin-bottom: 28px;
+    font-weight: 700;
+    margin-bottom: 2rem;
+
   }
   
   .test-category ul {
@@ -238,13 +243,13 @@ li {
   .test-category li {
     font-size: 14px;
     color: #2c3e50;
-    margin-bottom: 16px;
+    margin-bottom: 1.5rem;
   }
-  
- 
-  .image-section img {
-    margin-left: 67%;
-    height: 350px;
-    width: 350px;
+.image-section{
+flex-basis: 30%;
   }
+.image-section img{
+width: 100%;
+}
+
   
