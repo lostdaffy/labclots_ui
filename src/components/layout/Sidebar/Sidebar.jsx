@@ -1,8 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./StyleDashboard.css";
-import useAuthStore from "../../store/authStore";
-import Logo from "../../assets/icon.png"
+import "./Sidebar.css";
+import useAuthStore from "../../../store/authStore";
 
 const Sidebar = () => {
   const { logoutUser } = useAuthStore();
@@ -23,7 +22,7 @@ const Sidebar = () => {
           </Link>
         </li>
         <li>
-          <Link to="/dashboard/add-patient" className="sidebar-item">
+          <Link to="/dashboard/patient-management" className="sidebar-item">
             <i className="ri-file-chart-line"></i> Patients Management
           </Link>
         </li>
@@ -34,7 +33,7 @@ const Sidebar = () => {
         </li>
         <li>
           <Link to="/profile" className="sidebar-item">
-          <i class="ri-user-settings-line"></i> Profile
+          <i className="ri-user-settings-line"></i> Profile
           </Link>
         </li>
       </ul>

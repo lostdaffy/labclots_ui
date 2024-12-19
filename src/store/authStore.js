@@ -129,7 +129,7 @@ const useAuthStore = create((set) => ({
     sample,
     amount,
     discount,
-    discountBy
+    totalAmount
   ) => {
     set({ isLoading: true, error: null });
 
@@ -146,7 +146,7 @@ const useAuthStore = create((set) => ({
         sample,
         amount,
         discount,
-        discountBy,
+        totalAmount,
       });
 
       set({
@@ -162,6 +162,17 @@ const useAuthStore = create((set) => ({
       throw error;
     }
   },
+
+  registeredPatient: async () => {
+    set({ isLoading: true, error: null });
+
+    try {
+      await axios.post(`${API_URL}/patient-list`);
+    } catch (error) {
+      set({ error: "Error logging out", isLoading: false });
+      throw error;
+    }
+  }
 }));
 
 export default useAuthStore;

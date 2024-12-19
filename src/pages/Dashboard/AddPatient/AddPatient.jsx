@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useAuthStore from "../../store/authStore";
+import "./AddPatient.css"
+import useAuthStore from "../../../store/authStore";
 const AddPatient = () => {
+
   const navigate = useNavigate();
 
   const [patientName, setPatientName] = useState();
@@ -15,7 +17,7 @@ const AddPatient = () => {
   const [sample, setSample] = useState();
   const [amount, setAmount] = useState();
   const [discount, setDiscount] = useState();
-  const [discountBy, setDiscountBy] = useState();
+  const [totalAmount, setTotalAmount] = useState();
 
   const { addPatient, error, isLoading } = useAuthStore();
 
@@ -35,9 +37,12 @@ const AddPatient = () => {
         sample,
         amount,
         discount,
-        discountBy
+        totalAmount
       );
-      navigate("/dashboard");
+
+
+      navigate("/dashboard/patient-list");
+    
     } catch (error) {
       console.log(error);
     }
@@ -48,10 +53,10 @@ const AddPatient = () => {
       <div className="main-wrapper">
         <h3>Patient Registration</h3>
 
-        <form class="form-card" onSubmit={handleSubmit}>
+        <form className="form-card" onSubmit={handleSubmit}>
           <div className="section-flex">
-            <div class="form-section">
-              <div class="form-group">
+            <div className="form-section">
+              <div className="form-group">
                 <label>Patient Name *</label>
                 <input
                   type="text"
@@ -60,7 +65,7 @@ const AddPatient = () => {
                   onChange={(e) => setPatientName(e.target.value)}
                 />
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <label>Patient Age *</label>
                 <input
                   type="text"
@@ -69,19 +74,25 @@ const AddPatient = () => {
                   onChange={(e) => setPatientAge(e.target.value)}
                 />
               </div>
-              <div class="form-group">
-                <label>Patient Gender *</label>
-                <input
-                  type="text"
-                  placeholder="Patient Gender"
+
+              <div className="form-group">
+                <label for="patientGender">Patient Gender *</label>
+                <select
                   name="patientGender"
                   onChange={(e) => setPatientGender(e.target.value)}
-                />
+                >
+                  <option selected disabled>
+                    Select Gender
+                  </option>
+                  <option>Male</option>
+                  <option>Female</option>
+                  <option>Other</option>
+                </select>
               </div>
             </div>
 
-            <div class="form-section">
-              <div class="form-group">
+            <div className="form-section">
+              <div className="form-group">
                 <label>Patient Email *</label>
                 <input
                   type="text"
@@ -90,7 +101,7 @@ const AddPatient = () => {
                   onChange={(e) => setPatientEmail(e.target.value)}
                 />
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <label>Patient Mobile No. *</label>
                 <input
                   type="text"
@@ -99,7 +110,7 @@ const AddPatient = () => {
                   onChange={(e) => setPatientMobile(e.target.value)}
                 />
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <label>Patient Address *</label>
                 <input
                   type="text"
@@ -110,8 +121,8 @@ const AddPatient = () => {
               </div>
             </div>
 
-            <div class="form-section">
-              <div class="form-group">
+            <div className="form-section">
+              <div className="form-group">
                 <label>Refer By *</label>
                 <input
                   type="text"
@@ -120,7 +131,7 @@ const AddPatient = () => {
                   onChange={(e) => setReferBy(e.target.value)}
                 />
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <label>Sample By *</label>
                 <input
                   type="text"
@@ -129,19 +140,30 @@ const AddPatient = () => {
                   onChange={(e) => setSampleBy(e.target.value)}
                 />
               </div>
-              <div class="form-group">
-                <label>Sample *</label>
-                <input
-                  type="text"
-                  placeholder="Section Pending"
+
+              <div className="form-group">
+                <label for="sample">Sample *</label>
+                <select
                   name="sample"
                   onChange={(e) => setSample(e.target.value)}
-                />
+                >
+                  <option selected disabled>
+                    Select Sample
+                  </option>
+                  <option>Blood</option>
+                  <option>Urine</option>
+                  <option>Saliva</option>
+                  <option>Sputum</option>
+                  <option>Swabs</option>
+                  <option>Feces</option>
+                  <option>Semen</option>
+                  <option>Biopsy Samples</option>
+                </select>
               </div>
             </div>
 
-            <div class="form-section">
-              <div class="form-group">
+            <div className="form-section">
+              <div className="form-group">
                 <label>Amount *</label>
                 <input
                   type="text"
@@ -150,7 +172,7 @@ const AddPatient = () => {
                   onChange={(e) => setAmount(e.target.value)}
                 />
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <label>Discount %( if any) </label>
                 <input
                   type="text"
@@ -159,21 +181,21 @@ const AddPatient = () => {
                   onChange={(e) => setDiscount(e.target.value)}
                 />
               </div>
-              <div class="form-group">
-                <label>Discount by</label>
+              <div className="form-group">
+                <label>Total Amount</label>
                 <input
                   type="text"
-                  placeholder="Discount by"
-                  name="discountBy"
-                  onChange={(e) => setDiscountBy(e.target.value)}
+                  placeholder="Total Amount"
+                  name="totalAmount"
+                  onChange={(e) => setTotalAmount(e.target.value)}
                 />
               </div>
             </div>
           </div>
 
           <div className="form-button">
-            <button type="submit" class="submit-btn">
-              <i class="ri-user-add-line"></i> Save
+            <button type="submit" className="submit-btn">
+              <i className="ri-user-add-line"></i> Save
             </button>
           </div>
         </form>

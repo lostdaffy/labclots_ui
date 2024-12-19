@@ -1,14 +1,7 @@
 import React from "react";
-import "./StyleDashboard.css";
-import useAuthStore from "../../store/authStore";
+import "./Dashboard.css";
 
 const Dashboard = () => {
-  const { logoutUser } = useAuthStore();
-
-  const handleSubmit = () => {
-    logoutUser();
-  };
-
   return (
     <div className="dashboard">
       <h1>Welcome to Your Lab Dashboard</h1>
