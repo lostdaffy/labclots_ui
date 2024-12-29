@@ -80,7 +80,7 @@ const PaymentReceipt = () => {
 
         <button onClick={receipt}>Print Receipt</button>
 
-        <div class="footer">
+        <div class="payment-footer">
           Thank you for choosing Pathology Lab. Stay healthy!
         </div>
       </div>

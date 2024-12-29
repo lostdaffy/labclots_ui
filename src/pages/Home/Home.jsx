@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import imge from "../../assets/imge.jpg";
-import report_icon from "../../assets/report-icon.png";
+import report_icon from "../../assets/medical-report.png";
+import report_icon1 from "../../assets/examination.png";
+import report_icon2 from "../../assets/instructor.png";
 
 import "./Home.css";
 
@@ -110,7 +112,7 @@ const Home = () => {
 
               <div className="about-wrap">
                 <div className="about-icon">
-                  <img src={report_icon} alt="Report Icon" />
+                  <img src={report_icon1} alt="Report Icon" />
                 </div>
                 <div className="about-icon-text">
                   <h4>Patient Record Management</h4>
@@ -124,7 +126,7 @@ const Home = () => {
 
               <div className="about-wrap">
                 <div className="about-icon">
-                  <img src={report_icon} alt="Report Icon" />
+                  <img src={report_icon2} alt="Report Icon" />
                 </div>
                 <div className="about-icon-text">
                   <h4> Real-Time Access </h4>

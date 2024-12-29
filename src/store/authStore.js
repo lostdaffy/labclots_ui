@@ -172,7 +172,31 @@ const useAuthStore = create((set) => ({
       set({ error: "Error logging out", isLoading: false });
       throw error;
     }
-  }
+  },
+
+  addTest: async (testName, testRange, testUnit) => {
+    set({ isLoading: true, error: null });
+
+    try {
+      const response = await axios.post(`${API_URL}/add-test`, {
+        testName,
+        testRange,
+        testUnit,
+      });
+
+      set({
+        test: response.data.data,
+        isAuthenticated: true,
+        isLoading: false,
+      });
+    } catch (error) {
+      set({
+        error: error.response.data.test || "Error Signing up",
+        isLoading: false,
+      });
+      throw error;
+    }
+  },
 }));
 
 export default useAuthStore;

@@ -1,5 +1,4 @@
 import React from "react";
-import "./PatientManagement.css";
 import { Link } from "react-router-dom";
 
 const PatientManagement = () => {
@@ -11,7 +10,7 @@ const PatientManagement = () => {
         <Link to="/dashboard/add-patient">
           <div className="summary-item">
             <h3>
-              <i class="ri-user-add-line"></i> Add New Patient
+              <i className="ri-user-add-line"></i> Add New Patient
             </h3>
           </div>
         </Link>
@@ -19,7 +18,7 @@ const PatientManagement = () => {
         <Link to="/dashboard/patient-list">
           <div className="summary-item">
             <h3>
-              <i class="ri-file-list-line"></i> Registered Patient
+              <i className="ri-file-list-line"></i> Registered Patient
             </h3>
           </div>
         </Link>
@@ -27,7 +26,7 @@ const PatientManagement = () => {
         <Link to="/dashboard/add-results">
           <div className="summary-item">
             <h3>
-              <i class="ri-edit-line"></i> Add Results
+              <i className="ri-edit-line"></i> Add Results
             </h3>
           </div>
         </Link>
@@ -35,7 +34,7 @@ const PatientManagement = () => {
         <Link to="/dashboard/complete-reports">
           <div className="summary-item">
             <h3>
-              <i class="ri-file-check-line"></i> Completed Reports
+              <i className="ri-file-check-line"></i> Completed Reports
             </h3>
           </div>
         </Link>

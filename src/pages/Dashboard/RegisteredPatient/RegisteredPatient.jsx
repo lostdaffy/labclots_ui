@@ -59,7 +59,7 @@ const RegisteredPatient = () => {
                   </Link>
                   <Link
                     className="action-btn btn-download"
-                    to={`/dashboard/add-results`}
+                    to={`/dashboard/add-results/${patient._id}`}
                   >
                     Add Results
                   </Link>

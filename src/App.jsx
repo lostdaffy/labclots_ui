@@ -15,6 +15,8 @@ import PaymentReceipt from "./pages/Dashboard/PatientReceipt/PaymentReceipt.jsx"
 import Sidebar from "./components/layout/Sidebar/Sidebar.jsx";
 import AddPatient from "./pages/Dashboard/AddPatient/AddPatient.jsx";
 import AddResults from "./pages/Dashboard/AddResults/AddResults.jsx";
+import LabSettings from "./pages/Dashboard/LabSettings/LabSettings.jsx";
+import AddTest from "./pages/Dashboard/AddTest/AddTest.jsx";
 
 function App() { 
   const { isCheckingAuth, checkAuth, isAuthenticated, user } = useAuthStore();
@@ -122,6 +124,33 @@ function App() {
       />
 
       <Route
+        path="/dashboard/lab-settings"
+        element={
+          <ProtectedRoute>
+            <>
+              <div className="d-flex">
+                <Sidebar />
+                <LabSettings /> 
+              </div>
+            </>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/dashboard/lab-settings/add-test"
+        element={
+          <ProtectedRoute>
+            <>
+              <div className="d-flex">
+                <Sidebar />
+                <AddTest /> 
+              </div>
+            </>
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
         path="/dashboard/add-patient"
         element={
           <ProtectedRoute>
@@ -169,6 +198,19 @@ function App() {
               <div className="d-flex">
                 <Sidebar />
                 <PaymentReceipt /> 
+              </div>
+            </>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/dashboard/add-results/:id"
+        element={
+          <ProtectedRoute>
+            <>
+              <div className="d-flex">
+                <Sidebar />
+                <AddResults />
               </div>
             </>
           </ProtectedRoute>

@@ -1,111 +1,204 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./AddResults.css";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const AddResults = () => {
-  const [testResults, setTestResults] = useState([
-    { parameter: "", value: "", unit: "" },
+  const { id } = useParams();
+  const [data, setData] = useState([]);
+  const [tests, setTest] = useState([]);
+  // const [selectedUser, setSelectedUser] = useState("");
+
+  const [results, setResults] = useState([
+    {
+      id: 1,
+      testName: "Widal Test (Slide Method)",
+      result: "",
+      unit: "",
+      normal: "<1:40",
+    },
+    {
+      id: 2,
+      testName: "Haemoglobin (HB)",
+      result: "",
+      unit: "gm/%",
+      normal: "12.5 - 15.0",
+    },
+    {
+      id: 3,
+      testName: "Blood Sugar (Random)",
+      result: "",
+      unit: "mg/dL",
+      normal: "60 - 140",
+    },
   ]);
 
-  const handleInputChange = (index, field, value) => {
-    const updatedResults = [...testResults];
-    updatedResults[index][field] = value;
-    setTestResults(updatedResults);
+  const addRow = () => {
+    setResults([
+      ...results,
+      { id: results.length + 1, testName: '', result: '', unit: '', normal: '' },
+    ]);
   };
 
-  const addResultField = () => {
-    setTestResults([...testResults, { parameter: "", value: "", unit: "" }]);
-  };
 
-  const removeResultField = (index) => {
-    setTestResults(testResults.filter((_, i) => i !== index));
-  };
+  useEffect(() => {
+    const fetchData = async (id) => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/api/v1/users/add-results/${id}`
+        );
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const formData = {
-      testName: e.target.testName.value,
-      testCode: e.target.testCode.value,
-      category: e.target.category.value,
-      results: testResults,
+        const response1 = await axios.get(
+          `http://localhost:8080/api/v1/users/test-list`
+        );
+
+        setData(response.data.patient);
+        setTest(response1.data.test);
+      } catch (error) {
+        throw error;
+      }
     };
-    console.log("Form Data:", formData);
-    alert("Form submitted! Check the console for details.");
+
+    fetchData(id);
+  }, []);
+
+  const handleChange = (event) => {
+    setSelectedUser(event.target.value);
+    console.log("Selected user:", event.target.value);
   };
+
+
+  setResults([
+    ...results,
+    { id: results.length + 1, testName: "", result: "", unit: "", normal: "" },
+  ]);
+
+  const removeRow = (id) => {
+    setResults(results.filter((row) => row.id !== id));
+  };
+
+  const handleInputChange = (id, field, value) => {
+    setResults(
+      results.map((row) => (row.id === id ? { ...row, [field]: value } : row))
+    );
+  };
+
 
   return (
     <div className="add-results">
-      <div className="form-container">
-        <h1 className="form-title">Add Test</h1>
-        <form onSubmit={handleSubmit} className="test-form">
-          <div className="form-group">
-            <label htmlFor="testName">Test Name:</label>
-            <input type="text" id="testName" name="testName" required />
-          </div>
-          <div className="form-group">
-            <label htmlFor="testCode">Test Code:</label>
-            <input type="text" id="testCode" name="testCode" required />
-          </div>
-          <div className="form-group">
-            <label htmlFor="category">Category:</label>
-            <select id="category" name="category" required>
-              <option value="">Select Category</option>
-              <option value="Hematology">Hematology</option>
-              <option value="Biochemistry">Biochemistry</option>
-              <option value="Microbiology">Microbiology</option>
-              <option value="Immunology">Immunology</option>
-              <option value="Pathology">Pathology</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
+      <div className="container">
+        <h1>Test Result Entry</h1>
 
-          <h2 className="section-title">Test Results</h2>
-          {testResults.map((result, index) => (
-            <div className="test-result-row" key={index}>
-              <input
-                type="text"
-                placeholder="Parameter"
-                value={result.parameter}
-                onChange={(e) =>
-                  handleInputChange(index, "parameter", e.target.value)
-                }
-                required
-              />
-              <input
-                type="text"
-                placeholder="Value"
-                value={result.value}
-                onChange={(e) =>
-                  handleInputChange(index, "value", e.target.value)
-                }
-                required
-              />
-              <input
-                type="text"
-                placeholder="Unit"
-                value={result.unit}
-                onChange={(e) =>
-                  handleInputChange(index, "unit", e.target.value)
-                }
-              />
-              <button
-                type="button"
-                onClick={() => removeResultField(index)}
-                className="remove-btn"
-              >
-                Remove
-              </button>
-            </div>
-          ))}
-          <button type="button" onClick={addResultField} className="add-btn">
-            + Add Result Field
+        {/* Patient and Booking Information */}
+        <div className="form-section">
+          <div>
+            <label htmlFor="bookingDate">Booking Date:</label>
+            <input type="date" id="bookingDate" name="bookingDate" />
+          </div>
+          <div>
+            <label htmlFor="bookingTime">Booking Time:</label>
+            <input type="time" id="bookingTime" name="bookingTime" />
+          </div>
+          <div>
+            <label htmlFor="patientName">Patient:</label>
+            <input
+              type="text"
+              id="patientName"
+              name="patientName"
+              placeholder="Name"
+            />
+          </div>
+          <div>
+            <label htmlFor="patientID">Patient ID:</label>
+            <input
+              type="text"
+              id="patientID"
+              name="patientID"
+              placeholder="ID"
+            />
+          </div>
+        </div>
+
+        {/* Test Results Table */}
+        <div className="table-container">
+          <table className="results-table">
+            <thead>
+              <tr>
+                <th>ISN</th>
+                <th>Test Name</th>
+                <th>Result</th>
+                <th>Unit</th>
+                <th>Normal</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {results.map((row) => (
+                <tr key={row.id}>
+                  <td>{row.id}</td>
+                  <td>
+                    <input
+                      type="text"
+                      value={row.testName}
+                      onChange={(e) =>
+                        handleInputChange(row.id, "testName", e.target.value)
+                      }
+                      placeholder="Test Name"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      value={row.result}
+                      onChange={(e) =>
+                        handleInputChange(row.id, "result", e.target.value)
+                      }
+                      placeholder="Result"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      value={row.unit}
+                      onChange={(e) =>
+                        handleInputChange(row.id, "unit", e.target.value)
+                      }
+                      placeholder="Unit"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      value={row.normal}
+                      onChange={(e) =>
+                        handleInputChange(row.id, "normal", e.target.value)
+                      }
+                      placeholder="Normal"
+                    />
+                  </td>
+                  <td>
+                    <button
+                      onClick={() => removeRow(row.id)}
+                      className="btn-danger"
+                    >
+                      Remove
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Action Buttons */}
+        <div className="action-buttons">
+          <button onClick={addRow} className="btn-secondary">
+            Add Row
           </button>
-
-          <div className="submit-container">
-            <button type="submit" className="submit-btn">
-              Submit
-            </button>
-          </div>
-        </form>
+          <button onClick="" className="btn-primary">
+            Save
+          </button>
+        </div>
       </div>
     </div>
   );

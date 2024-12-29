@@ -27,7 +27,7 @@ const Sidebar = () => {
           </Link>
         </li>
         <li>
-          <Link to="/settings" className="sidebar-item">
+          <Link to="/dashboard/lab-settings" className="sidebar-item">
             <i className="ri-settings-5-fill"></i> Lab Settings
           </Link>
         </li>
