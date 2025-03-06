@@ -9,19 +9,18 @@ import Login from "./pages/Login/Login.jsx";
 import Register from "./pages/Register/Register.jsx";
 import VerifyUser from "./pages/VerifyUser/VerifyUser.jsx";
 import useAuthStore from "./store/authStore.js";
-import PatientManagement from "./pages/Dashboard/PatientManagement/PatientManagement.jsx";
-import RegisteredPatient from "./pages/Dashboard/RegisteredPatient/RegisteredPatient.jsx";
 import PaymentReceipt from "./pages/Dashboard/PatientReceipt/PaymentReceipt.jsx";
 import Sidebar from "./components/layout/Sidebar/Sidebar.jsx";
 import AddPatient from "./pages/Dashboard/AddPatient/AddPatient.jsx";
 import AddResults from "./pages/Dashboard/AddResults/AddResults.jsx";
-import LabSettings from "./pages/Dashboard/LabSettings/LabSettings.jsx";
 import AddTest from "./pages/Dashboard/AddTest/AddTest.jsx";
+import PatientList from "./pages/Dashboard/PatientList/PatientList.jsx";
+import TopBar from "./components/layout/Topbar/topBar.jsx";
 
-function App() { 
+function App() {
   const { isCheckingAuth, checkAuth, isAuthenticated, user } = useAuthStore();
 
-  useEffect(() => { 
+  useEffect(() => {
     checkAuth();
   }, [checkAuth]);
 
@@ -100,6 +99,7 @@ function App() {
         element={
           <ProtectedRoute>
             <>
+              <TopBar />
               <div className="d-flex">
                 <Sidebar />
                 <Dashboard />
@@ -110,40 +110,14 @@ function App() {
       />
 
       <Route
-        path="/dashboard/patient-management"
-        element={
-          <ProtectedRoute>
-            <>
-              <div className="d-flex">
-                <Sidebar />
-                <PatientManagement /> 
-              </div>
-            </>
-          </ProtectedRoute>
-        }
-      />
-
-      <Route
-        path="/dashboard/lab-settings"
-        element={
-          <ProtectedRoute>
-            <>
-              <div className="d-flex">
-                <Sidebar />
-                <LabSettings /> 
-              </div>
-            </>
-          </ProtectedRoute>
-        }
-      />
-      <Route
         path="/dashboard/lab-settings/add-test"
         element={
           <ProtectedRoute>
             <>
+            <TopBar />
               <div className="d-flex">
                 <Sidebar />
-                <AddTest /> 
+                <AddTest />
               </div>
             </>
           </ProtectedRoute>
@@ -155,9 +129,10 @@ function App() {
         element={
           <ProtectedRoute>
             <>
+            <TopBar />
               <div className="d-flex">
                 <Sidebar />
-                <AddPatient /> 
+                <AddPatient />
               </div>
             </>
           </ProtectedRoute>
@@ -166,14 +141,15 @@ function App() {
       <Route
         path="/dashboard/add-results"
         element={
-          <ProtectedRoute>
-            <>
-              <div className="d-flex">
-                <Sidebar />
-                <AddResults /> 
-              </div>
-            </>
-          </ProtectedRoute>
+          // <ProtectedRoute>
+          <>
+           <TopBar />
+            <div className="d-flex">
+              <Sidebar />
+              <AddResults />
+            </div>
+          </>
+          // </ProtectedRoute>
         }
       />
       <Route
@@ -181,9 +157,10 @@ function App() {
         element={
           <ProtectedRoute>
             <>
+            <TopBar />
               <div className="d-flex">
                 <Sidebar />
-                <RegisteredPatient /> 
+                <PatientList />
               </div>
             </>
           </ProtectedRoute>
@@ -195,9 +172,10 @@ function App() {
         element={
           <ProtectedRoute>
             <>
+            <TopBar />
               <div className="d-flex">
                 <Sidebar />
-                <PaymentReceipt /> 
+                <PaymentReceipt />
               </div>
             </>
           </ProtectedRoute>
@@ -208,6 +186,7 @@ function App() {
         element={
           <ProtectedRoute>
             <>
+            <TopBar />
               <div className="d-flex">
                 <Sidebar />
                 <AddResults />

@@ -17,8 +17,6 @@ const AddTest = () => {
 
     try {
       await addTest(testName, testRange, testUnit);
-
-      navigate("/dashboard");
     } catch (error) {
       console.log(error);
     }

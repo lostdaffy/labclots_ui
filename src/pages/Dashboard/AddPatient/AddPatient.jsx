@@ -51,32 +51,32 @@ const AddPatient = () => {
   return (
     <section className="patientMain">
       <div className="main-wrapper">
-        <h3>Patient Registration</h3>
+        <h3>Register New Patient</h3>
 
         <form className="form-card" onSubmit={handleSubmit}>
           <div className="section-flex">
             <div className="form-section">
               <div className="form-group">
-                <label>Patient Name *</label>
+                <label><span>*</span> Name</label>
                 <input
                   type="text"
-                  placeholder="Patient Name"
+                  placeholder="Name"
                   name="patientName"
                   onChange={(e) => setPatientName(e.target.value)}
                 />
               </div>
               <div className="form-group">
-                <label>Patient Age *</label>
+                <label><span>*</span> Age</label>
                 <input
                   type="text"
-                  placeholder="Patient Age"
+                  placeholder="Age"
                   name="patientAge"
                   onChange={(e) => setPatientAge(e.target.value)}
                 />
               </div>
 
               <div className="form-group">
-                <label for="patientGender">Patient Gender *</label>
+                <label for="patientGender"><span>*</span> Gender</label>
                 <select
                   name="patientGender"
                   onChange={(e) => setPatientGender(e.target.value)}
@@ -93,28 +93,28 @@ const AddPatient = () => {
 
             <div className="form-section">
               <div className="form-group">
-                <label>Patient Email *</label>
+                <label>Email ID</label>
                 <input
                   type="text"
                   name="patientEmail"
-                  placeholder="Patient Email"
+                  placeholder="Email"
                   onChange={(e) => setPatientEmail(e.target.value)}
                 />
               </div>
               <div className="form-group">
-                <label>Patient Mobile No. *</label>
+                <label>Phone Number</label>
                 <input
                   type="text"
-                  placeholder="Patient Mobile No."
+                  placeholder="Phone Number"
                   name="patientMobile"
                   onChange={(e) => setPatientMobile(e.target.value)}
                 />
               </div>
               <div className="form-group">
-                <label>Patient Address *</label>
+                <label>Address</label>
                 <input
                   type="text"
-                  placeholder="Patient Address"
+                  placeholder="Address"
                   name="patientAddress"
                   onChange={(e) => setPatientAddress(e.target.value)}
                 />
@@ -123,7 +123,7 @@ const AddPatient = () => {
 
             <div className="form-section">
               <div className="form-group">
-                <label>Refer By *</label>
+                <label>Refer By</label>
                 <input
                   type="text"
                   placeholder="Doctor Name"
@@ -191,11 +191,12 @@ const AddPatient = () => {
                 />
               </div>
             </div>
+            
           </div>
 
           <div className="form-button">
-            <button type="submit" className="submit-btn">
-              <i className="ri-user-add-line"></i> Save
+            <button type="submit" className="billing-btn">
+              <i className="ri-user-add-line"></i> Go to Billing
             </button>
           </div>
         </form>

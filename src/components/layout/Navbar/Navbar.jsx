@@ -7,7 +7,7 @@ const Navbar = () => {
     <div className="navbar">
       <Link to="/home">
         <h1>
-          <i className="ri-microscope-fill"></i> BloPath
+          <i className="ri-microscope-fill"></i> labclots
         </h1>
       </Link>
       <div className="nav-links">

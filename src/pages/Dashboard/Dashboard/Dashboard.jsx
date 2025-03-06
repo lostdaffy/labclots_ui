@@ -18,10 +18,6 @@ const Dashboard = () => {
           <h3>Completed Reports</h3>
           <p>90</p>
         </div>
-        <div className="summary-item">
-          <h3>New Patients</h3>
-          <p>5</p>
-        </div>
       </div>
     </div>
   );

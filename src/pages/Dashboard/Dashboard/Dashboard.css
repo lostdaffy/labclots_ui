@@ -2,9 +2,9 @@
 
 /* Dashboard styles */
 .dashboard {
-    background-color: #11140f;
     width: 100%;
     padding: 50px;
+    background-color: #0000001a;
 }
 
 .dashboard h1 {
