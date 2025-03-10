@@ -76,15 +76,15 @@ const Home = () => {
 
               <div className="about-bullet">
                 <h5>
-                  <i class="ri-check-fill"></i> Eliminates the risk of data loss
+                  <i className="ri-check-fill"></i> Eliminates the risk of data loss
                   due to system crashes.
                 </h5>
                 <h5>
-                  <i class="ri-check-fill"></i> Supports multiple labs under one
+                  <i className="ri-check-fill"></i> Supports multiple labs under one
                   software system with unique dashboards for each.
                 </h5>
                 <h5>
-                  <i class="ri-check-fill"></i> Automatic report generation for
+                  <i className="ri-check-fill"></i> Automatic report generation for
                   tests like blood tests, imaging, and biochemistry.
                 </h5>
               </div>
@@ -148,7 +148,7 @@ const Home = () => {
         <div className="app-wrap">
           <div className="text-sec">
             <h2 className="title">
-              BloPath – Your Most Trusted Healthcare Partner!
+              labclots – Your Most Trusted Healthcare Partner!
             </h2>
             <p className="subtitle">
               Online lab reporting software has become an essential tool for

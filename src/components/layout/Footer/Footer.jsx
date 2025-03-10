@@ -9,7 +9,7 @@ const Footer = () => {
         <div className="footer-wrap">
           <div className="footer-column">
             <div className="footer-logo">
-              <h1>BloPath</h1>
+              <h1>labclots</h1>
               <p>
                 Lorem, ipsum dolor amet adipisicing elit. Reiciendis, dicta
                 rerum non fuga molestiae rerum.

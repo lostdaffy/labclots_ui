@@ -95,6 +95,7 @@ const useAuthStore = create((set) => ({
         isAuthenticated: true,
         isCheckingAuth: false,
       });
+    
     } catch (error) {
       set({ error: null, isCheckingAuth: false, isAuthenticated: false });
     }

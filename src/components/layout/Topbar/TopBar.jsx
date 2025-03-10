@@ -30,6 +30,10 @@ const TopBar = () => {
         </button>
       </div>
 
+      <div>
+        <h5><i class="ri-hand-heart-line"></i> Donation</h5> 
+      </div>
+
       <label className="dropdown">
         <div className="dd-button">
           <i class="ri-account-circle-line"></i> Lab Name

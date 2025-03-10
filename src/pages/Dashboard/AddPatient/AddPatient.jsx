@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./AddPatient.css"
+import "./AddPatient.css";
 import useAuthStore from "../../../store/authStore";
 const AddPatient = () => {
-
   const navigate = useNavigate();
 
   const [patientName, setPatientName] = useState();
@@ -40,9 +39,7 @@ const AddPatient = () => {
         totalAmount
       );
 
-
       navigate("/dashboard/patient-list");
-    
     } catch (error) {
       console.log(error);
     }
@@ -57,7 +54,9 @@ const AddPatient = () => {
           <div className="section-flex">
             <div className="form-section">
               <div className="form-group">
-                <label><span>*</span> Name</label>
+                <label>
+                  <span>*</span> Name
+                </label>
                 <input
                   type="text"
                   placeholder="Name"
@@ -66,7 +65,9 @@ const AddPatient = () => {
                 />
               </div>
               <div className="form-group">
-                <label><span>*</span> Age</label>
+                <label>
+                  <span>*</span> Age
+                </label>
                 <input
                   type="text"
                   placeholder="Age"
@@ -76,7 +77,9 @@ const AddPatient = () => {
               </div>
 
               <div className="form-group">
-                <label for="patientGender"><span>*</span> Gender</label>
+                <label for="patientGender">
+                  <span>*</span> Gender
+                </label>
                 <select
                   name="patientGender"
                   onChange={(e) => setPatientGender(e.target.value)}
@@ -142,7 +145,9 @@ const AddPatient = () => {
               </div>
 
               <div className="form-group">
-                <label for="sample">Sample *</label>
+                <label for="sample">
+                  <span>*</span> Sample
+                </label>
                 <select
                   name="sample"
                   onChange={(e) => setSample(e.target.value)}
@@ -160,11 +165,37 @@ const AddPatient = () => {
                   <option>Biopsy Samples</option>
                 </select>
               </div>
+
+              <div className="form-group">
+                <label for="test">
+                  <span>*</span> Test
+                </label>
+                <select
+                  name="test"
+                  onChange={(e) => setTest(e.target.value)}
+                >
+                  <option selected disabled>
+                    Select Test
+                  </option>
+                  <option>CBC</option>
+                  <option>LFT</option>
+                  <option>KFT</option>
+                  <option>TFT</option>
+                  <option>Lipid Profile</option>
+                  <option>Blood Glucose Test</option>
+                  <option>HbA1c</option>
+                  <option>Urinalysis</option>
+                  <option>Coagulation Panel</option>
+                  <option>CRP</option>
+                </select>
+              </div>
             </div>
 
             <div className="form-section">
               <div className="form-group">
-                <label>Amount *</label>
+                <label>
+                  <span>*</span> Amount
+                </label>
                 <input
                   type="text"
                   placeholder="Total Amount"
@@ -182,7 +213,9 @@ const AddPatient = () => {
                 />
               </div>
               <div className="form-group">
-                <label>Total Amount</label>
+                <label>
+                  <span>*</span> Total Amount
+                </label>
                 <input
                   type="text"
                   placeholder="Total Amount"
@@ -191,12 +224,11 @@ const AddPatient = () => {
                 />
               </div>
             </div>
-            
           </div>
 
           <div className="form-button">
             <button type="submit" className="billing-btn">
-              <i className="ri-user-add-line"></i> Go to Billing
+              <i className="ri-user-add-line"></i> Register
             </button>
           </div>
         </form>
