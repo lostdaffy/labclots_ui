@@ -46,12 +46,12 @@ const PaymentReceipt = () => {
               <strong>Age/Gender:</strong> {data.patientAge}yr. / {data.patientGender}
             </td>
             <td>
-              <strong>Date:</strong> 
+              <strong>Date:</strong> {new Date(data.createdAt).toLocaleString()}
             </td>
           </tr>
           <tr>
             <td>
-              <strong>Referred by:</strong> {data.referBy}
+              <strong>Consultant:</strong> {data.consultant}
             </td>
             <td>
               <strong>Patient ID:</strong> {data.patientId}

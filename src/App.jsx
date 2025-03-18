@@ -17,36 +17,38 @@ import AddTest from "./pages/Dashboard/AddTest/AddTest.jsx";
 import PatientList from "./pages/Dashboard/PatientList/PatientList.jsx";
 import TopBar from "./components/layout/Topbar/topBar.jsx";
 
+// Protected Route
+const ProtectedRoute = ({ children }) => {
+  const { isAuthenticated, user } = useAuthStore();
+
+  if (!isAuthenticated) {
+    return <Navigate to="/user-login" replace />;
+  }
+
+  if (isAuthenticated && !user?.isVerified) {
+    return <Navigate to="/verify-user" replace />;
+  }
+
+  return children;
+};
+
+// Redirect Authenticated User
+const RedirectAuthenticatedUser = ({ children }) => {
+  const { isAuthenticated, user } = useAuthStore();
+
+  if (isAuthenticated && user?.isVerified) {
+    return <Navigate to="/dashboard" replace />;
+  }
+
+  return children;
+};
+
 function App() {
-  const { isCheckingAuth, checkAuth, isAuthenticated, user } = useAuthStore();
+  const { isCheckingAuth, checkAuth } = useAuthStore();
 
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
-
-  const ProtectedRoute = ({ children }) => {
-    const { isAuthenticated, user } = useAuthStore();
-
-    if (!isAuthenticated) {
-      return <Navigate to="/user-login" replace />;
-    }
-
-    // if (isAuthenticated && !user.isVerified) {
-    //   return <Navigate to="/verify-user" replace />;
-    // }
-
-    return children;
-  };
-
-  const RedirectAuthenticatedUser = ({ children }) => {
-    const { isAuthenticated, user } = useAuthStore();
-
-    if (isAuthenticated && user.isVerified) {
-      return <Navigate to="/dashboard" replace />;
-    }
-
-    return children;
-  };
 
   return (
     <Routes>
@@ -83,6 +85,7 @@ function App() {
         }
       />
 
+      {/* Login */}
       <Route
         path="/user-login"
         element={
@@ -94,6 +97,43 @@ function App() {
         }
       />
 
+      {/* /Login */}
+
+      {/* User Register */}
+
+      <Route
+        path="/user-register"
+        element={
+          <RedirectAuthenticatedUser>
+            <>
+              <Register />
+            </>
+          </RedirectAuthenticatedUser>
+        }
+      />
+
+      {/* /User Register */}
+
+      {/* Verify User */}
+
+      <Route
+        path="/verify-user"
+        element={
+          <RedirectAuthenticatedUser>
+            <>
+              <Navbar />
+              <VerifyUser />
+              <Footer />
+            </>
+          </RedirectAuthenticatedUser>
+        }
+      />
+
+      {/* /Verify User */}
+
+      {/* Dashboard Protected Routes */}
+
+      {/* Dashboard */}
       <Route
         path="/dashboard"
         element={
@@ -109,12 +149,16 @@ function App() {
         }
       />
 
+      {/* /Dashboard */}
+
+      {/* Add Test */}
+
       <Route
-        path="/dashboard/lab-settings/add-test"
+        path="/dashboard/add-test"
         element={
           <ProtectedRoute>
             <>
-            <TopBar />
+              <TopBar />
               <div className="d-flex">
                 <Sidebar />
                 <AddTest />
@@ -124,12 +168,16 @@ function App() {
         }
       />
 
+      {/* /Add Test */}
+
+      {/* Add Patient */}
+
       <Route
         path="/dashboard/add-patient"
         element={
           <ProtectedRoute>
             <>
-            <TopBar />
+              <TopBar />
               <div className="d-flex">
                 <Sidebar />
                 <AddPatient />
@@ -138,55 +186,17 @@ function App() {
           </ProtectedRoute>
         }
       />
-      <Route
-        path="/dashboard/add-results"
-        element={
-          // <ProtectedRoute>
-          <>
-           <TopBar />
-            <div className="d-flex">
-              <Sidebar />
-              <AddResults />
-            </div>
-          </>
-          // </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/dashboard/patient-list"
-        element={
-          <ProtectedRoute>
-            <>
-            <TopBar />
-              <div className="d-flex">
-                <Sidebar />
-                <PatientList />
-              </div>
-            </>
-          </ProtectedRoute>
-        }
-      />
 
-      <Route
-        path="/dashboard/payment-receipt/:id"
-        element={
-          <ProtectedRoute>
-            <>
-            <TopBar />
-              <div className="d-flex">
-                <Sidebar />
-                <PaymentReceipt />
-              </div>
-            </>
-          </ProtectedRoute>
-        }
-      />
+      {/* /Add Patient */}
+
+      {/* Add Results */}
+
       <Route
         path="/dashboard/add-results/:id"
         element={
           <ProtectedRoute>
             <>
-            <TopBar />
+              <TopBar />
               <div className="d-flex">
                 <Sidebar />
                 <AddResults />
@@ -196,29 +206,47 @@ function App() {
         }
       />
 
+      {/* /Add Results */}
+
+      {/* Patient List */}
+
       <Route
-        path="/user-register"
+        path="/dashboard/patient-list"
         element={
-          <RedirectAuthenticatedUser>
+          <ProtectedRoute>
             <>
-              <Register />
+              <TopBar />
+              <div className="d-flex">
+                <Sidebar />
+                <PatientList />
+              </div>
             </>
-          </RedirectAuthenticatedUser>
+          </ProtectedRoute>
         }
       />
 
+      {/* /Patient List */}
+
+      {/* Payment Recipt */}
+
       <Route
-        path="/verify-user"
+        path="/dashboard/payment-receipt/:id"
         element={
-          <RedirectAuthenticatedUser>
+          <ProtectedRoute>
             <>
-              <Navbar />
-              <VerifyUser />
-              <Footer />
+              <TopBar />
+              <div className="d-flex">
+                <Sidebar />
+                <PaymentReceipt />
+              </div>
             </>
-          </RedirectAuthenticatedUser>
+          </ProtectedRoute>
         }
       />
+
+      {/* /Payment Recipt */}
+
+      {/* /Dashboard Protected Routes */}
     </Routes>
   );
 }

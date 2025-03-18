@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./AddPatient.css";
 import useAuthStore from "../../../store/authStore";
+import axios from "axios";
 const AddPatient = () => {
   const navigate = useNavigate();
 
@@ -11,12 +12,14 @@ const AddPatient = () => {
   const [patientEmail, setPatientEmail] = useState();
   const [patientMobile, setPatientMobile] = useState();
   const [patientAddress, setPatientAddress] = useState();
-  const [referBy, setReferBy] = useState();
-  const [sampleBy, setSampleBy] = useState();
+  const [consultant, setConsultant] = useState();
   const [sample, setSample] = useState();
   const [amount, setAmount] = useState();
   const [discount, setDiscount] = useState();
   const [totalAmount, setTotalAmount] = useState();
+  const [test, setTest] = useState("");
+
+  const [testList, setTestList] = useState([]);
 
   const { addPatient, error, isLoading } = useAuthStore();
 
@@ -31,9 +34,9 @@ const AddPatient = () => {
         patientEmail,
         patientMobile,
         patientAddress,
-        referBy,
-        sampleBy,
+        consultant,
         sample,
+        test,
         amount,
         discount,
         totalAmount
@@ -44,6 +47,22 @@ const AddPatient = () => {
       console.log(error);
     }
   };
+
+  const handleTestOption = async () => {
+    await axios
+      .get("http://localhost:8080/api/v1/users/test-list")
+      .then((response) => {
+        const testList = response.data.test;
+        setTestList(testList);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    handleTestOption();
+  }, []);
 
   return (
     <section className="patientMain">
@@ -77,15 +96,15 @@ const AddPatient = () => {
               </div>
 
               <div className="form-group">
-                <label for="patientGender">
+                <label htmlFor="patientGender">
                   <span>*</span> Gender
                 </label>
                 <select
                   name="patientGender"
                   onChange={(e) => setPatientGender(e.target.value)}
                 >
-                  <option selected disabled>
-                    Select Gender
+                  <option value="Select Gender">
+                  Select Gender
                   </option>
                   <option>Male</option>
                   <option>Female</option>
@@ -126,33 +145,24 @@ const AddPatient = () => {
 
             <div className="form-section">
               <div className="form-group">
-                <label>Refer By</label>
+                <label>Consultant</label>
                 <input
                   type="text"
                   placeholder="Doctor Name"
-                  name="referBy"
-                  onChange={(e) => setReferBy(e.target.value)}
-                />
-              </div>
-              <div className="form-group">
-                <label>Sample By *</label>
-                <input
-                  type="text"
-                  placeholder="Sample By"
-                  name="sampleBy"
-                  onChange={(e) => setSampleBy(e.target.value)}
+                  name="consultant"
+                  onChange={(e) => setConsultant(e.target.value)}
                 />
               </div>
 
               <div className="form-group">
-                <label for="sample">
+                <label htmlFor="sample">
                   <span>*</span> Sample
                 </label>
                 <select
                   name="sample"
                   onChange={(e) => setSample(e.target.value)}
                 >
-                  <option selected disabled>
+                  <option value="Select Sample">
                     Select Sample
                   </option>
                   <option>Blood</option>
@@ -167,26 +177,25 @@ const AddPatient = () => {
               </div>
 
               <div className="form-group">
-                <label for="test">
+                <label htmlFor="test">
                   <span>*</span> Test
                 </label>
                 <select
                   name="test"
+                  value={test}
                   onChange={(e) => setTest(e.target.value)}
                 >
-                  <option selected disabled>
+                  <option value="Select Test">
                     Select Test
                   </option>
-                  <option>CBC</option>
-                  <option>LFT</option>
-                  <option>KFT</option>
-                  <option>TFT</option>
-                  <option>Lipid Profile</option>
-                  <option>Blood Glucose Test</option>
-                  <option>HbA1c</option>
-                  <option>Urinalysis</option>
-                  <option>Coagulation Panel</option>
-                  <option>CRP</option>
+
+                  {testList?.map((item, index) => {
+                    return (
+                      <option value={`${item.testName}`} key={index}>
+                        {item.testName}
+                      </option>
+                    );
+                  })}
                 </select>
               </div>
             </div>

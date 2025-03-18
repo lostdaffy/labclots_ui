@@ -23,34 +23,34 @@ const Dashboard = () => {
         <div className="top-tests">Top 10 Tests</div>
         <div className="tests-names">
           <li>
-            <i class="ri-test-tube-line"></i> Complete Blood Count (CBC)
+            <i className="ri-test-tube-line"></i> Complete Blood Count (CBC)
           </li>
           <li>
-            <i class="ri-test-tube-line"></i> Lipid Profile
+            <i className="ri-test-tube-line"></i> Lipid Profile
           </li>
           <li>
-            <i class="ri-test-tube-line"></i> Liver Function Test (LFT)
+            <i className="ri-test-tube-line"></i> Liver Function Test (LFT)
           </li>
           <li>
-            <i class="ri-test-tube-line"></i> Kidney Function Test (KFT)
+            <i className="ri-test-tube-line"></i> Kidney Function Test (KFT)
           </li>
           <li>
-            <i class="ri-test-tube-line"></i> Thyroid Function Test (TFT)
+            <i className="ri-test-tube-line"></i> Thyroid Function Test (TFT)
           </li>
           <li>
-            <i class="ri-test-tube-line"></i> Blood Glucose Test
+            <i className="ri-test-tube-line"></i> Blood Glucose Test
           </li>
           <li>
-            <i class="ri-test-tube-line"></i> Hemoglobin A1c (HbA1c)
+            <i className="ri-test-tube-line"></i> Hemoglobin A1c (HbA1c)
           </li>
           <li>
-            <i class="ri-test-tube-line"></i> Urinalysis
+            <i className="ri-test-tube-line"></i> Urinalysis
           </li>
           <li>
-            <i class="ri-test-tube-line"></i> Coagulation Panel
+            <i className="ri-test-tube-line"></i> Coagulation Panel
           </li>
           <li>
-            <i class="ri-test-tube-line"></i> C-Reactive Protein (CRP) Test
+            <i className="ri-test-tube-line"></i> C-Reactive Protein (CRP) Test
           </li>
         </div>
       </div>

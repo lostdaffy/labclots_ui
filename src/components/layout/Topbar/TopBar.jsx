@@ -31,12 +31,12 @@ const TopBar = () => {
       </div>
 
       <div>
-        <h5><i class="ri-hand-heart-line"></i> Donation</h5> 
+        <h5><i className="ri-hand-heart-line"></i> Donation</h5> 
       </div>
 
       <label className="dropdown">
         <div className="dd-button">
-          <i class="ri-account-circle-line"></i> Lab Name
+          <i className="ri-account-circle-line"></i> Lab Name
         </div>
 
         <input type="checkbox" className="dd-input" id="test" />
@@ -63,13 +63,13 @@ const TopBar = () => {
 
       <div className="topbar-links">
         <Link to="/home">
-          <i class="ri-question-line"></i> Help
+          <i className="ri-question-line"></i> Help
         </Link>
         <Link to="/home">
-          <i class="ri-settings-3-line"></i>
+          <i className="ri-settings-3-line"></i>
         </Link>
         <Link to="">
-          <i class="ri-notification-4-line"></i>
+          <i className="ri-notification-4-line"></i>
         </Link>
       </div>
     </div>

@@ -56,19 +56,25 @@ const PatientList = () => {
                 <tr key={patient._id}>
                   <td>{patient.patientId}</td>
                   <td>
-                  {patient.patientName} <br /> {patient.patientAge}, {patient.patientGender}
+                    {patient.patientName} <br /> {patient.patientAge},{" "}
+                    {patient.patientGender}
                   </td>
-                  <td>{patient.referBy}</td>
-                  <td>Complete Blood Count 2 (CBC)</td>
+                  <td>{patient.consultant}</td>
+                  <td>{patient.test}</td>
                   <td>{patient.totalAmount}</td>
                   <td>
-                    {patient.createdAt}
-                    {/* 2025-03-06 <br />
-                    08:12 PM */}
+                    {new Date(patient.createdAt).toLocaleDateString()} <br />
+                    {new Date(patient.createdAt).toLocaleTimeString()}
                   </td>
                   <td>Pending</td>
                   <td>
-                    <Link className="action-btn" to={`/dashboard/payment-receipt/${patient._id}`}>Bill</Link> <br />
+                    <Link
+                      className="action-btn"
+                      to={`/dashboard/payment-receipt/${patient._id}`}
+                    >
+                      Bill
+                    </Link>{" "}
+                    <br />
                     <button className="action-btn">Print Report</button>
                   </td>
                 </tr>

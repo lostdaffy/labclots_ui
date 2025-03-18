@@ -10,6 +10,7 @@ const useAuthStore = create((set) => ({
   error: null,
   isLoading: false,
   isCheckingAuth: true,
+  
 
   register: async (ownerName, labName, labEmail, labPassword) => {
     set({ isLoading: true, error: null });
@@ -29,7 +30,7 @@ const useAuthStore = create((set) => ({
       });
     } catch (error) {
       set({
-        error: error.response.data.user || "Error Signing up",
+        error: error.response?.data.user || "Error Signing up",
         isLoading: false,
       });
       throw error;
@@ -95,9 +96,10 @@ const useAuthStore = create((set) => ({
         isAuthenticated: true,
         isCheckingAuth: false,
       });
-    
+
     } catch (error) {
-      set({ error: null, isCheckingAuth: false, isAuthenticated: false });
+      console.error("Auth Check Failed:", error);
+      set({ error: error?.message || "Auth check failed", isCheckingAuth: false, isAuthenticated: false });
     }
   },
 
@@ -125,9 +127,9 @@ const useAuthStore = create((set) => ({
     patientEmail,
     patientMobile,
     patientAddress,
-    referBy,
-    sampleBy,
+    consultant,
     sample,
+    test,
     amount,
     discount,
     totalAmount
@@ -142,22 +144,22 @@ const useAuthStore = create((set) => ({
         patientEmail,
         patientMobile,
         patientAddress,
-        referBy,
-        sampleBy,
+        consultant,
         sample,
+        test,
         amount,
         discount,
         totalAmount,
       });
 
       set({
-        user: response.data.data,
+        patient: response.data.data,
         isAuthenticated: true,
         isLoading: false,
       });
     } catch (error) {
       set({
-        error: error.response.data.user || "Error Signing up",
+        error: error.response.data.patient || "Error Signing up",
         isLoading: false,
       });
       throw error;
@@ -168,9 +170,10 @@ const useAuthStore = create((set) => ({
     set({ isLoading: true, error: null });
 
     try {
-      await axios.post(`${API_URL}/patient-list`);
+      const response = await axios.post(`${API_URL}/patient-list`);
+      set({ patients: response.data, isLoading: false });
     } catch (error) {
-      set({ error: "Error logging out", isLoading: false });
+      set({ error: "Error fetching patients", isLoading: false });
       throw error;
     }
   },
