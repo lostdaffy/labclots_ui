@@ -23,19 +23,19 @@ const PatientList = () => {
 
   return (
     <div className="patient-list">
-      <div class="main-list">
+      <div className="main-list">
         <h2>Patient List</h2>
-        <div class="top-bar">
+        <div className="top-bar">
           <button>📄 Worksheet</button>
-          <input type="search" placeholder="Search by name or barcode..." />
+          {/* <input type="search" placeholder="Search by name or barcode..." /> */}
           <select>
             <option>All</option>
           </select>
-          <input type="date" value="2025-03-07" />
-          <input type="date" value="2025-03-07" />
+          {/* <input type="date" value="2025-03-07" />
+          <input type="date" value="2025-03-07" /> */}
         </div>
 
-        <div class="table-container">
+        <div className="table-container">
           <table>
             <thead>
               <tr>
@@ -68,14 +68,25 @@ const PatientList = () => {
                   </td>
                   <td>Pending</td>
                   <td>
-                    <Link
-                      className="action-btn"
-                      to={`/dashboard/payment-receipt/${patient._id}`}
-                    >
-                      Bill
-                    </Link>{" "}
+                    <div>
+                      <Link
+                        className="action-btn"
+                        to={`/dashboard/payment-receipt/${patient._id}`}
+                      >
+                        Bill
+                      </Link>
+                    </div>
+
                     <br />
-                    <button className="action-btn">Print Report</button>
+
+                    <div>
+                      <Link
+                        to={`/dashboard/add-results/${patient._id}`}
+                        className="action-btn"
+                      >
+                        Print Report
+                      </Link>
+                    </div>
                   </td>
                 </tr>
               ))}

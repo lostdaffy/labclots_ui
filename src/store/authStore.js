@@ -178,14 +178,13 @@ const useAuthStore = create((set) => ({
     }
   },
 
-  addTest: async (testName, testRange, testUnit) => {
+  addTest: async (testName, testPrice) => {
     set({ isLoading: true, error: null });
 
     try {
       const response = await axios.post(`${API_URL}/add-test`, {
         testName,
-        testRange,
-        testUnit,
+        testPrice,
       });
 
       set({
