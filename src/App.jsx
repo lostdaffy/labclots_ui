@@ -3,7 +3,6 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import Footer from "./components/layout/Footer/Footer.jsx";
 import Navbar from "./components/layout/Navbar/Navbar.jsx";
 import About from "./pages/About/About.jsx";
-import Dashboard from "./pages/Dashboard/Dashboard/Dashboard.jsx";
 import Home from "./pages/Home/Home.jsx";
 import Login from "./pages/Login/Login.jsx";
 import Register from "./pages/Register/Register.jsx";
@@ -16,6 +15,8 @@ import AddResults from "./pages/Dashboard/AddResults/AddResults.jsx";
 import AddTest from "./pages/Dashboard/AddTest/AddTest.jsx";
 import PatientList from "./pages/Dashboard/PatientList/PatientList.jsx";
 import TopBar from "./components/layout/Topbar/topBar.jsx";
+import Analysis from "./pages/Dashboard/Analysis/Analysis.jsx";
+import Preciption from "./pages/Dashboard/Preciption/Preciption.jsx";
 
 // Protected Route
 const ProtectedRoute = ({ children }) => {
@@ -37,7 +38,7 @@ const RedirectAuthenticatedUser = ({ children }) => {
   const { isAuthenticated, user } = useAuthStore();
 
   if (isAuthenticated && user?.isVerified) {
-    return <Navigate to="/dashboard" replace />;
+    return <Navigate to="/analysis" replace />;
   }
 
   return children;
@@ -135,14 +136,14 @@ function App() {
 
       {/* Dashboard */}
       <Route
-        path="/dashboard"
+        path="/analysis"
         element={
           <ProtectedRoute>
             <>
               <TopBar />
               <div className="d-flex">
                 <Sidebar />
-                <Dashboard />
+                <Analysis />
               </div>
             </>
           </ProtectedRoute>
@@ -227,19 +228,26 @@ function App() {
 
       {/* /Patient List */}
 
+      {/* Preciption */}
+
+      <Route
+        path="/dashboard/preciption/:id"
+        element={
+          <ProtectedRoute>
+           <Preciption />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* /Preciption */}
+
       {/* Payment Recipt */}
 
       <Route
         path="/dashboard/payment-receipt/:id"
         element={
           <ProtectedRoute>
-            <>
-              <TopBar />
-              <div className="d-flex">
-                <Sidebar />
-                <PaymentReceipt />
-              </div>
-            </>
+           <PaymentReceipt />
           </ProtectedRoute>
         }
       />

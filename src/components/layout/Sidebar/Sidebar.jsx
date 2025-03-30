@@ -14,7 +14,7 @@ const Sidebar = () => {
           </Link>
         </li>
         <li>
-          <Link to="/dashboard" className="sidebar-item">
+          <Link to="/analysis" className="sidebar-item">
             <i className="ri-dashboard-3-line"></i> Analysis
           </Link>
         </li>
@@ -35,7 +35,7 @@ const Sidebar = () => {
         </li>
        
         <li>
-          <Link to="/dashboard" className="sidebar-item">
+          <Link to="/analysis" className="sidebar-item">
           <i className="ri-user-line"></i> Lab Profile
           </Link>
         </li>

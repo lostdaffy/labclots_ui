@@ -1,12 +1,12 @@
 /* Dashboard styles */
-.dashboard {
+.analysis {
     width: 100%;
     padding: 50px;
     background-color: #0000001a;
     display: flex;
 }
 
-.dashboard-summary {
+.analysis-summary {
     display: flex;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;

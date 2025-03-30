@@ -12,7 +12,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await login(labEmail, labPassword);
-    navigate("/dashboard");
+    navigate("/analysis");
   };
 
   return (

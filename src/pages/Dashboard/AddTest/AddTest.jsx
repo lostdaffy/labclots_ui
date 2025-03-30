@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
-import "../AddTest/Addtest.css";
-import { useNavigate } from "react-router-dom";
+import "./Addtest.css";
 import useAuthStore from "../../../store/authStore";
 import axios from "axios";
 
 const AddTest = () => {
-  const navigate = useNavigate();
 
   const [testName, setTestName] = useState();
   const [testPrice, setTestPrice] = useState();

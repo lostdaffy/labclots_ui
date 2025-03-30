@@ -99,13 +99,6 @@
 
 
 @media print {
-    body * {
-        visibility: hidden;
-    }
-
-    .sidebar {
-        display: none;
-    }
 
     .payment-receipt * {
         visibility: visible;

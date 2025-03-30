@@ -4,6 +4,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const PatientList = () => {
+  const [activeBar, setActiveBar] = useState("Pending");
+
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -25,15 +27,6 @@ const PatientList = () => {
     <div className="patient-list">
       <div className="main-list">
         <h2>Patient List</h2>
-        <div className="top-bar">
-          <button>📄 Worksheet</button>
-          {/* <input type="search" placeholder="Search by name or barcode..." /> */}
-          <select>
-            <option>All</option>
-          </select>
-          {/* <input type="date" value="2025-03-07" />
-          <input type="date" value="2025-03-07" /> */}
-        </div>
 
         <div className="table-container">
           <table>
@@ -43,11 +36,9 @@ const PatientList = () => {
                 <th>Patient Details</th>
                 <th>Rf. Doctor</th>
                 <th>Tests</th>
-                <th>
-                  Amount <br /> (in ₹)
-                </th>
+                <th>Amount</th>
                 <th>Date</th>
-                <th>Status</th>
+                <th>Print Bill</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -61,33 +52,45 @@ const PatientList = () => {
                   </td>
                   <td>{patient.consultant}</td>
                   <td>{patient.test}</td>
-                  <td>{patient.totalAmount}</td>
+                  <td>₹{patient.totalAmount}</td>
                   <td>
                     {new Date(patient.createdAt).toLocaleDateString()} <br />
                     {new Date(patient.createdAt).toLocaleTimeString()}
                   </td>
-                  <td>Pending</td>
                   <td>
                     <div>
                       <Link
                         className="action-btn"
                         to={`/dashboard/payment-receipt/${patient._id}`}
                       >
-                        Bill
-                      </Link>
-                    </div>
-
-                    <br />
-
-                    <div>
-                      <Link
-                        to={`/dashboard/add-results/${patient._id}`}
-                        className="action-btn"
-                      >
-                        Print Report
+                        <i class="ri-download-2-line"></i>
                       </Link>
                     </div>
                   </td>
+
+                  {activeBar === `${patient.status}` ? (
+                    <td>
+                      <div>
+                        <Link
+                          to={`/dashboard/add-results/${patient._id}`}
+                          className="action-btn"
+                        >
+                          <i class="ri-file-add-line"></i>
+                        </Link>
+                      </div>
+                    </td>
+                  ) : (
+                    <td>
+                      <div>
+                        <Link
+                          to={`/dashboard/preciption/${patient._id}`}
+                          className="action-btn"
+                        >
+                          <i class="ri-printer-fill"></i>
+                        </Link>
+                      </div>
+                    </td>
+                  )}
                 </tr>
               ))}
             </tbody>
