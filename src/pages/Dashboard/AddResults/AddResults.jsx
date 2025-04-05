@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./AddResults.css";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
+import useAuthStore from "../../../store/authStore";
 
 const AddResults = () => {
+  const { id } = useParams();
+  const { data, fetchPatient, isLoading, error } = useAuthStore();
+  
   const [inputField, setInputField] = useState([
     { id: 0, name: "", result: "", range: "", unit: "" },
   ]);
-
+  
+  
   const onChangeInput = (event, index) => {
     const updateRow = inputField.map((row) => {
       if (row.id == index) {
@@ -35,6 +41,27 @@ const AddResults = () => {
     }
   };
 
+  useEffect(() => {
+    fetchPatient(id);
+  }, []);
+
+  const addResult = async () => {
+    try {
+      const response = await axios.put(
+        `http://localhost:8080/api/v1/users/update-patient/${data?._id}`,
+        {
+          ...data,
+          result: inputField,
+          status: "Completed",
+        }
+      );
+      console.log(response);
+    } catch (error) {
+      console.error("Error updating patient:", error);
+    }
+  };
+
+
   return (
     <div className="add-results">
       <div className="result-container">
@@ -43,8 +70,8 @@ const AddResults = () => {
         {/* Patient and Booking Information */}
         <div className="result-wrapper">
           <div className="info-details">
-            <p>UHID NO : 43154415</p>
-            <p>NAME : Viraj</p>
+            <p>Patient ID : {data?.patientId}</p>
+            <p>NAME : {data?.patientName}</p>
           </div>
         </div>
 
@@ -61,7 +88,7 @@ const AddResults = () => {
               </tr>
             </thead>
             <tbody>
-              {inputField.map((item, index) => {
+              {inputField.map((item) => {
                 return (
                   <tr key="">
                     <td>
@@ -131,7 +158,7 @@ const AddResults = () => {
             ) : null}
           </div>
           <div>
-            <Link className="print-btn">
+            <Link className="print-btn" to={`/dashboard/preciption/${id}`} onClick={addResult}>
               <i className="ri-printer-fill"></i> Print Report
             </Link>
           </div>

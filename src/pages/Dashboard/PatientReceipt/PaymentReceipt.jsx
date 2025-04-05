@@ -1,27 +1,18 @@
 import React, { useEffect, useState } from "react";
 import "./PaymentReceipt.css";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import useAuthStore from "../../../store/authStore";
 
 const PaymentReceipt = () => {
   const { id } = useParams();
-  const [data, setData] = useState([]);
+  const { data, fetchPatient, isLoading, error } = useAuthStore();
+  const { user, isAuthenticated } = useAuthStore();
+
 
   useEffect(() => {
-    const fetchData = async (id) => {
-      try {
-        const response = await axios.get(
-          `http://localhost:8080/api/v1/users/payment-receipt/${id}`
-        );
-        setData(response.data.patient);
-      } catch (error) {
-        throw error;
-      }
-    };
-
-    fetchData(id);
+    fetchPatient(id);
   }, []);
 
   const downloadPDF = () => {
@@ -39,66 +30,58 @@ const PaymentReceipt = () => {
 
   return (
     <>
-      <div className="payment-receipt" id="pdfDownload">
-        <div class="receipt-container">
-          <div class="receipt-title">TEST RECEIPT</div>
-
-          <table class="info-table">
+      <div className="receipt" id="pdfDownload">
+        <div className="payment-receipt">
+          <div class="receipt-header">
+            <h2>{user?.labName}</h2>
+            <p>
+              003, Yashodan Bldg.II, Four Bungalows Andheri (W), Mumbai - 400053
+            </p>
+            <p>Tel: 26365852, 66997034, 9821017047</p>
+          </div>
+          <hr />
+          <div class="receipt-info">
+            <div>
+              <p>
+                <strong>Name:</strong> {data?.patientName}
+              </p>
+              <p>
+                <strong>Patient ID:</strong> {data?.patientId}
+              </p>
+            </div>
+            <div>
+              <p>
+                <strong>Gender / Age:</strong> {data?.patientAge}yr. /
+                {data?.patientGender}
+              </p>
+              <p>
+                <strong>Registration Date:</strong>
+                {new Date(data?.createdAt).toLocaleString()}
+              </p>
+            </div>
+          </div>
+          <hr />
+          <table class="table">
             <tr>
-              <td>
-                <strong>Patient Name:</strong> {data.patientName}
-              </td>
-              <td>
-                <strong>Bill No.:</strong>
-              </td>
+              <th>Sr.</th>
+              <th>Service Name</th>
+              <th>Charge (Rs.)</th>
             </tr>
             <tr>
-              <td>
-                <strong>Age/Gender:</strong> {data.patientAge}yr. /{" "}
-                {data.patientGender}
-              </td>
-              <td>
-                <strong>Date:</strong>{" "}
-                {new Date(data.createdAt).toLocaleString()}
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <strong>Consultant:</strong> {data.consultant}
-              </td>
-              <td>
-                <strong>Patient ID:</strong> {data.patientId}
-              </td>
-            </tr>
-          </table>
-
-          <table class="charges-table">
-            <tr>
-              <td>Amount</td>
-              <td>{data.amount}</td>
-            </tr>
-            <tr>
-              <td>Discount (%)</td>
-              <td>{data.discount}%</td>
-            </tr>
-            <tr>
-              <td>
-                <strong>Total Amount</strong>
-              </td>
-              <td>
-                <strong>{data.totalAmount}</strong>
-              </td>
+              <td>1</td>
+              <td>Haemoglobin</td>
+              <td>{data?.totalAmount}</td>
             </tr>
           </table>
-
-          <div class="payment-footer">
-            Thank you for choosing Pathology Lab. Stay healthy!
+          <div class="amount-info">
+            <p>Total Amount: Rs. {data?.totalAmount}</p>
           </div>
         </div>
       </div>
-
-      <div>
-        <button onClick={downloadPDF}>Print Receipt</button>
+      <div className="down-btn">
+        <button onClick={downloadPDF}>
+          <i class="ri-download-2-line"></i> Download
+        </button>
       </div>
     </>
   );

@@ -34,7 +34,7 @@ const PatientList = () => {
               <tr>
                 <th>Patient Id</th>
                 <th>Patient Details</th>
-                <th>Rf. Doctor</th>
+                <th>Consultant</th>
                 <th>Tests</th>
                 <th>Amount</th>
                 <th>Date</th>
@@ -63,7 +63,7 @@ const PatientList = () => {
                         className="action-btn"
                         to={`/dashboard/payment-receipt/${patient._id}`}
                       >
-                        <i class="ri-download-2-line"></i>
+                        <i className="ri-download-2-line"></i>
                       </Link>
                     </div>
                   </td>
@@ -75,7 +75,7 @@ const PatientList = () => {
                           to={`/dashboard/add-results/${patient._id}`}
                           className="action-btn"
                         >
-                          <i class="ri-file-add-line"></i>
+                          <i className="ri-file-add-line"></i>
                         </Link>
                       </div>
                     </td>
@@ -86,7 +86,7 @@ const PatientList = () => {
                           to={`/dashboard/preciption/${patient._id}`}
                           className="action-btn"
                         >
-                          <i class="ri-printer-fill"></i>
+                          <i className="ri-printer-fill"></i>
                         </Link>
                       </div>
                     </td>

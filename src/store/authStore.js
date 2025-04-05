@@ -10,7 +10,9 @@ const useAuthStore = create((set) => ({
   error: null,
   isLoading: false,
   isCheckingAuth: true,
-  
+  data: null,
+  result: [],
+
 
   register: async (ownerName, labName, labEmail, labPassword) => {
     set({ isLoading: true, error: null });
@@ -76,6 +78,8 @@ const useAuthStore = create((set) => ({
         error: null,
         isLoading: false,
       });
+
+      console.log(response.data.data.user)
     } catch (error) {
       set({
         error: error.response?.data?.message || "Error logging in",
@@ -166,17 +170,7 @@ const useAuthStore = create((set) => ({
     }
   },
 
-  registeredPatient: async () => {
-    set({ isLoading: true, error: null });
 
-    try {
-      const response = await axios.post(`${API_URL}/patient-list`);
-      set({ patients: response.data, isLoading: false });
-    } catch (error) {
-      set({ error: "Error fetching patients", isLoading: false });
-      throw error;
-    }
-  },
 
   addTest: async (testName, testPrice) => {
     set({ isLoading: true, error: null });
@@ -200,6 +194,28 @@ const useAuthStore = create((set) => ({
       throw error;
     }
   },
+
+
+  fetchPatient: async (id) => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await axios.get(`http://localhost:8080/api/v1/users/patient/${id}`);
+      const patient = response.data.patient;
+
+      set({
+        data: patient,
+        result: patient.result || [],
+        isLoading: false,
+        error: null,
+      });
+    } catch (error) {
+      set({
+        isLoading: false,
+        error: error.response?.data?.message || "Failed to fetch patient data",
+      });
+    }
+  },
+
 }));
 
 export default useAuthStore;
