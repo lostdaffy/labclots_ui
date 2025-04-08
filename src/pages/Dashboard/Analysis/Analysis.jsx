@@ -9,11 +9,11 @@ const Analysis = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/api/v1/users/test-list"
+        "http://localhost:8080/api/v1/patients/test-list"
       );
 
       const reportsCount = await axios.get(
-        "http://localhost:8080/api/v1/users/reportCount"
+        "http://localhost:8080/api/v1/patients/reportCount"
       );
 
       setData(response.data.test);

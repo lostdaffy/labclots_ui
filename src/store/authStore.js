@@ -1,7 +1,8 @@
 import { create } from "zustand";
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/api/v1/users";
+const USER_API_URL = "http://localhost:8080/api/v1/users";
+const PATIENT_API_URL = "http://localhost:8080/api/v1/patients";
 
 axios.defaults.withCredentials = true;
 
@@ -18,7 +19,7 @@ const useAuthStore = create((set) => ({
     set({ isLoading: true, error: null });
 
     try {
-      const response = await axios.post(`${API_URL}/register`, {
+      const response = await axios.post(`${USER_API_URL}/register`, {
         ownerName,
         labName,
         labEmail,
@@ -42,7 +43,7 @@ const useAuthStore = create((set) => ({
   verifyEmail: async (verificationCode) => {
     set({ isLoading: true, error: null });
     try {
-      const response = await axios.post(`${API_URL}/verify-email`, {
+      const response = await axios.post(`${USER_API_URL}/verify-email`, {
         verificationCode,
       });
 
@@ -67,7 +68,7 @@ const useAuthStore = create((set) => ({
     set({ isLoading: true, error: null });
 
     try {
-      const response = await axios.post(`${API_URL}/User-Login`, {
+      const response = await axios.post(`${USER_API_URL}/User-Login`, {
         labEmail,
         labPassword,
       });
@@ -93,7 +94,7 @@ const useAuthStore = create((set) => ({
     set({ isCheckingAuth: true, error: null });
 
     try {
-      const response = await axios.get(`${API_URL}/check-auth`);
+      const response = await axios.get(`${USER_API_URL}/check-auth`);
 
       set({
         user: response.data.user,
@@ -111,7 +112,7 @@ const useAuthStore = create((set) => ({
     set({ isLoading: true, error: null });
 
     try {
-      await axios.post(`${API_URL}/user-logout`);
+      await axios.post(`${USER_API_URL}/user-logout`);
       set({
         user: null,
         isAuthenticated: false,
@@ -141,7 +142,7 @@ const useAuthStore = create((set) => ({
     set({ isLoading: true, error: null });
 
     try {
-      const response = await axios.post(`${API_URL}/add-patient`, {
+      const response = await axios.post(`${PATIENT_API_URL}/add-patient`, {
         patientName,
         patientAge,
         patientGender,
@@ -176,7 +177,7 @@ const useAuthStore = create((set) => ({
     set({ isLoading: true, error: null });
 
     try {
-      const response = await axios.post(`${API_URL}/add-test`, {
+      const response = await axios.post(`${PATIENT_API_URL}/add-test`, {
         testName,
         testPrice,
       });
@@ -199,7 +200,7 @@ const useAuthStore = create((set) => ({
   fetchPatient: async (id) => {
     set({ isLoading: true, error: null });
     try {
-      const response = await axios.get(`http://localhost:8080/api/v1/users/patient/${id}`);
+      const response = await axios.get(`${PATIENT_API_URL}/patient/${id}`);
       const patient = response.data.patient;
 
       set({
@@ -215,6 +216,27 @@ const useAuthStore = create((set) => ({
       });
     }
   },
+
+
+  patientList: async () => {
+    set({ isLoading: true, error: null });
+
+    try {
+      const response = await axios.get(`${PATIENT_API_URL}/patient-list`);
+      const patient = response.data.patient;
+      set({
+        data: patient,
+        isLoading: false,
+        error: null,
+      });
+      
+    } catch (error) {
+      set({
+        isLoading: false,
+        error: error.response?.data?.message || "Failed to fetch patient data",
+      });
+    }
+  }
 
 }));
 

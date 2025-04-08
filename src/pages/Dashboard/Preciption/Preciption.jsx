@@ -2,91 +2,98 @@ import React, { useEffect, useState } from "react";
 import "./Preciption.css";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
-import lab_icon from "../../../assets/icon.png";
+import labIcon from "../../../assets/icon.png";
 import { useParams } from "react-router-dom";
 import useAuthStore from "../../../store/authStore";
 
 const Preciption = () => {
   const { id } = useParams();
-  const { user, isAuthenticated } = useAuthStore();
-  const { data, result, fetchPatient, isLoading, error } = useAuthStore();
-
+  const { user, data, result, fetchPatient } = useAuthStore();
 
   useEffect(() => {
-    fetchPatient(id);
-  }, []);
-
+    if (id) fetchPatient(id);
+  }, [id]);
 
   const downloadPDF = () => {
     const input = document.getElementById("pdfDownload");
+    if (!input) return;
 
     html2canvas(input).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
       const pdf = new jsPDF();
       const imgWidth = 210;
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      pdf.addImage(imgData, "JPG", 0, 0, imgWidth, imgHeight);
-      pdf.save(`${data.patientName}.pdf`);
+      pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+      pdf.save(`${data?.patientName || "report"}.pdf`);
     });
   };
 
   return (
     <>
       <div className="download-btn">
-        <i class="ri-file-download-line" onClick={downloadPDF}></i>
+        <i
+          className="ri-file-download-line"
+          onClick={downloadPDF}
+          title="Download PDF"
+        ></i>
       </div>
+
       <div className="a4-page" id="pdfDownload">
         <div className="header-top">
           <div className="lab-logo">
-            <img src={lab_icon} alt="" />
+            <img src={labIcon} alt="Lab Logo" />
           </div>
           <div className="header">
             <h1>{user?.labName}</h1>
             <p>
-              <i class="ri-map-pin-fill"></i> J.V Jain College Road, Saharanpur
-              (U.P) 247001
+              <i className="ri-map-pin-fill"></i> J.V Jain College Road,
+              Saharanpur (U.P) 247001
             </p>
             <p>
-              <i class="ri-phone-fill"></i> +91 8273998875 ||
-              <i class="ri-mail-fill"></i> satyaasingh001@gmail.com
+              <i className="ri-phone-fill"></i> +91 8273998875 &nbsp;|&nbsp;
+              <i className="ri-mail-fill"></i> satyaasingh001@gmail.com
             </p>
           </div>
         </div>
+
         <div className="mini-banner">LABORATORY REPORT</div>
 
         <div className="patient-info">
           <table>
-            <tr>
-              <td>
-                <strong>Patient Name :</strong> {data?.patientName}
-              </td>
-              <td>
-                <strong>Patient ID :</strong> {data?.patientId}
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <strong>Age / Sex :</strong> {data?.patientAge}yrs. /
-                {data?.patientGender}
-              </td>
-              <td>
-                <strong>Consultant :</strong> {data?.consultant}
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <strong>Contact No. :</strong> +91 {data?.patientMobile}
-              </td>
-              <td>
-                <strong>Report Date / Time :</strong>
-                {new Date(data?.createdAt).toLocaleString()}
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <strong>Address :</strong> {data?.patientAddress}
-              </td>
-            </tr>
+            <tbody>
+              <tr>
+                <td>
+                  <strong>Patient Name:</strong> {data?.patientName}
+                </td>
+                <td>
+                  <strong>Patient ID:</strong> {data?.patientId}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Age / Sex:</strong> {data?.patientAge} yrs /
+                  {data?.patientGender}
+                </td>
+                <td>
+                  <strong>Consultant:</strong> {data?.consultant}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Contact No.:</strong> +91 {data?.patientMobile}
+                </td>
+                <td>
+                  <strong>Report Date / Time:</strong>
+                  {data?.createdAt &&
+                    new Date(data.createdAt).toLocaleString()}
+                </td>
+              </tr>
+              <tr>
+                <td colSpan="2">
+                  <strong>Address:</strong> {data?.patientAddress}
+                </td>
+              </tr>
+            </tbody>
           </table>
         </div>
 
@@ -102,14 +109,15 @@ const Preciption = () => {
               </tr>
             </thead>
             <tbody>
-              {result.map((item) => (
-                <tr key={item?._id}>
-                  <td>{item?.name}</td>
-                  <td>{item?.result}</td>
-                  <td>{item?.range}</td>
-                  <td>{item?.unit}</td>
-                </tr>
-              ))}
+              {Array.isArray(result) &&
+                result.map((item) => (
+                  <tr key={item?._id}>
+                    <td>{item?.name}</td>
+                    <td>{item?.result}</td>
+                    <td>{item?.range}</td>
+                    <td>{item?.unit}</td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>

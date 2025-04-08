@@ -50,7 +50,7 @@ const AddPatient = () => {
 
   const handleTestOption = async () => {
     await axios
-      .get("http://localhost:8080/api/v1/users/test-list")
+      .get("http://localhost:8080/api/v1/patients/test-list")
       .then((response) => {
         const testList = response.data.test;
         setTestList(testList);

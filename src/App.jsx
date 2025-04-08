@@ -1,26 +1,34 @@
 import { useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import Footer from "./components/layout/Footer/Footer.jsx";
+
 import Navbar from "./components/layout/Navbar/Navbar.jsx";
-import About from "./pages/About/About.jsx";
+import Footer from "./components/layout/Footer/Footer.jsx";
+import Sidebar from "./components/layout/Sidebar/Sidebar.jsx";
+import TopBar from "./components/layout/Topbar/topBar.jsx";
+
 import Home from "./pages/Home/Home.jsx";
+import About from "./pages/About/About.jsx";
 import Login from "./pages/Login/Login.jsx";
 import Register from "./pages/Register/Register.jsx";
 import VerifyUser from "./pages/VerifyUser/VerifyUser.jsx";
-import useAuthStore from "./store/authStore.js";
-import PaymentReceipt from "./pages/Dashboard/PatientReceipt/PaymentReceipt.jsx";
-import Sidebar from "./components/layout/Sidebar/Sidebar.jsx";
-import AddPatient from "./pages/Dashboard/AddPatient/AddPatient.jsx";
-import AddResults from "./pages/Dashboard/AddResults/AddResults.jsx";
-import AddTest from "./pages/Dashboard/AddTest/AddTest.jsx";
-import PatientList from "./pages/Dashboard/PatientList/PatientList.jsx";
-import TopBar from "./components/layout/Topbar/topBar.jsx";
+
 import Analysis from "./pages/Dashboard/Analysis/Analysis.jsx";
+import AddPatient from "./pages/Dashboard/AddPatient/AddPatient.jsx";
+import AddTest from "./pages/Dashboard/AddTest/AddTest.jsx";
+import AddResults from "./pages/Dashboard/AddResults/AddResults.jsx";
+import PatientList from "./pages/Dashboard/PatientList/PatientList.jsx";
+import PaymentReceipt from "./pages/Dashboard/PatientReceipt/PaymentReceipt.jsx";
 import Preciption from "./pages/Dashboard/Preciption/Preciption.jsx";
+
+import useAuthStore from "./store/authStore.js";
 
 // Protected Route
 const ProtectedRoute = ({ children }) => {
-  const { isAuthenticated, user } = useAuthStore();
+  const { isAuthenticated, user, isCheckingAuth } = useAuthStore();
+
+  if (isCheckingAuth) {
+    return <div>Loading...</div>;
+  }
 
   if (!isAuthenticated) {
     return <Navigate to="/user-login" replace />;
@@ -35,7 +43,11 @@ const ProtectedRoute = ({ children }) => {
 
 // Redirect Authenticated User
 const RedirectAuthenticatedUser = ({ children }) => {
-  const { isAuthenticated, user } = useAuthStore();
+  const { isAuthenticated, user, isCheckingAuth } = useAuthStore();
+
+  if (isCheckingAuth) {
+    return <div>Loading...</div>;
+  }
 
   if (isAuthenticated && user?.isVerified) {
     return <Navigate to="/analysis" replace />;
@@ -44,8 +56,19 @@ const RedirectAuthenticatedUser = ({ children }) => {
   return children;
 };
 
+// Dashboard Layout Wrapper
+const DashboardLayout = ({ children }) => (
+  <>
+    <TopBar />
+    <div className="d-flex">
+      <Sidebar />
+      {children}
+    </div>
+  </>
+);
+
 function App() {
-  const { isCheckingAuth, checkAuth } = useAuthStore();
+  const { checkAuth } = useAuthStore();
 
   useEffect(() => {
     checkAuth();
@@ -53,6 +76,7 @@ function App() {
 
   return (
     <Routes>
+      {/* Public Routes */}
       <Route
         path="/"
         element={
@@ -63,7 +87,6 @@ function App() {
           </>
         }
       />
-
       <Route
         path="/home"
         element={
@@ -74,7 +97,6 @@ function App() {
           </>
         }
       />
-
       <Route
         path="/about"
         element={
@@ -86,37 +108,23 @@ function App() {
         }
       />
 
-      {/* Login */}
+      {/* Auth Routes */}
       <Route
         path="/user-login"
         element={
           <RedirectAuthenticatedUser>
-            <>
-              <Login />
-            </>
+            <Login />
           </RedirectAuthenticatedUser>
         }
       />
-
-      {/* /Login */}
-
-      {/* User Register */}
-
       <Route
         path="/user-register"
         element={
           <RedirectAuthenticatedUser>
-            <>
-              <Register />
-            </>
+            <Register />
           </RedirectAuthenticatedUser>
         }
       />
-
-      {/* /User Register */}
-
-      {/* Verify User */}
-
       <Route
         path="/verify-user"
         element={
@@ -130,131 +138,73 @@ function App() {
         }
       />
 
-      {/* /Verify User */}
-
-      {/* Dashboard Protected Routes */}
-
-      {/* Dashboard */}
+      {/* Protected Dashboard Routes */}
       <Route
         path="/analysis"
         element={
           <ProtectedRoute>
-            <>
-              <TopBar />
-              <div className="d-flex">
-                <Sidebar />
-                <Analysis />
-              </div>
-            </>
+            <DashboardLayout>
+              <Analysis />
+            </DashboardLayout>
           </ProtectedRoute>
         }
       />
-
-      {/* /Dashboard */}
-
-      {/* Add Test */}
-
       <Route
         path="/dashboard/add-test"
         element={
           <ProtectedRoute>
-            <>
-              <TopBar />
-              <div className="d-flex">
-                <Sidebar />
-                <AddTest />
-              </div>
-            </>
+            <DashboardLayout>
+              <AddTest />
+            </DashboardLayout>
           </ProtectedRoute>
         }
       />
-
-      {/* /Add Test */}
-
-      {/* Add Patient */}
-
       <Route
         path="/dashboard/add-patient"
         element={
           <ProtectedRoute>
-            <>
-              <TopBar />
-              <div className="d-flex">
-                <Sidebar />
-                <AddPatient />
-              </div>
-            </>
+            <DashboardLayout>
+              <AddPatient />
+            </DashboardLayout>
           </ProtectedRoute>
         }
       />
-
-      {/* /Add Patient */}
-
-      {/* Add Results */}
-
       <Route
         path="/dashboard/add-results/:id"
         element={
           <ProtectedRoute>
-            <>
-              <TopBar />
-              <div className="d-flex">
-                <Sidebar />
-                <AddResults />
-              </div>
-            </>
+            <DashboardLayout>
+              <AddResults />
+            </DashboardLayout>
           </ProtectedRoute>
         }
       />
-
-      {/* /Add Results */}
-
-      {/* Patient List */}
-
       <Route
         path="/dashboard/patient-list"
         element={
           <ProtectedRoute>
-            <>
-              <TopBar />
-              <div className="d-flex">
-                <Sidebar />
-                <PatientList />
-              </div>
-            </>
+            <DashboardLayout>
+              <PatientList />
+            </DashboardLayout>
           </ProtectedRoute>
         }
       />
-
-      {/* /Patient List */}
-
-      {/* Preciption */}
-
       <Route
         path="/dashboard/preciption/:id"
         element={
           <ProtectedRoute>
-           <Preciption />
+            <Preciption />
           </ProtectedRoute>
         }
       />
-
-      {/* /Preciption */}
-
-      {/* Payment Recipt */}
-
       <Route
         path="/dashboard/payment-receipt/:id"
         element={
           <ProtectedRoute>
-           <PaymentReceipt />
+            <PaymentReceipt />
           </ProtectedRoute>
         }
       />
-
-      {/* /Payment Recipt */}
-
-      {/* /Dashboard Protected Routes */}
     </Routes>
   );
 }

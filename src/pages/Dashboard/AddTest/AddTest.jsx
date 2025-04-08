@@ -27,7 +27,7 @@ const AddTest = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/api/v1/users/test-list"
+        "http://localhost:8080/api/v1/patients/test-list"
       );
       setData(response.data.test);
     } catch (error) {
