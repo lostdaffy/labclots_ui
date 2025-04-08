@@ -35,7 +35,7 @@ const PatientList = () => {
               </tr>
             </thead>
             <tbody>
-              {data?.map((patient) => (
+              {Array.isArray(data) && data?.map((patient) => (
                 <tr key={patient?._id}>
                   <td>{patient?.patientId}</td>
                   <td>
