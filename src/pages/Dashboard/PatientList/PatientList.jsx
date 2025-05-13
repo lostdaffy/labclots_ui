@@ -16,11 +16,11 @@ const PatientList = () => {
   if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <div className="patient-list">
-      <div className="main-list">
-        <h2>Patient List</h2>
+    <div className="pl-patient-list">
+      <div className="pl-main-list">
+        <h2 className="pl-title">Patient List</h2>
 
-        <div className="table-container">
+        <div className="pl-table-container">
           <table>
             <thead>
               <tr>
@@ -30,7 +30,7 @@ const PatientList = () => {
                 <th>Tests</th>
                 <th>Amount</th>
                 <th>Date</th>
-                <th>Print Bill</th>
+                <th>Receipt</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -52,7 +52,7 @@ const PatientList = () => {
                   <td>
                     <div>
                       <Link
-                        className="action-btn"
+                        className="pl-action-btn"
                         to={`/dashboard/payment-receipt/${patient?._id}`}
                       >
                         <i className="ri-download-2-line"></i>
@@ -65,7 +65,7 @@ const PatientList = () => {
                       <div>
                         <Link
                           to={`/dashboard/add-results/${patient?._id}`}
-                          className="action-btn"
+                          className="pl-action-btn"
                         >
                           <i className="ri-file-add-line"></i>
                         </Link>
@@ -76,7 +76,7 @@ const PatientList = () => {
                       <div>
                         <Link
                           to={`/dashboard/preciption/${patient?._id}`}
-                          className="action-btn"
+                          className="pl-action-btn"
                         >
                           <i className="ri-printer-fill"></i>
                         </Link>

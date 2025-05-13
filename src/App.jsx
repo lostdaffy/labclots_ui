@@ -21,6 +21,7 @@ import PaymentReceipt from "./pages/Dashboard/PatientReceipt/PaymentReceipt.jsx"
 import Preciption from "./pages/Dashboard/Preciption/Preciption.jsx";
 
 import useAuthStore from "./store/authStore.js";
+import LabProfile from "./pages/Dashboard/LabProfile/LabProfile.jsx";
 
 // Protected Route
 const ProtectedRoute = ({ children }) => {
@@ -202,6 +203,17 @@ function App() {
         element={
           <ProtectedRoute>
             <PaymentReceipt />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/dashboard/Lab-Profile"
+        element={
+          <ProtectedRoute>
+            <DashboardLayout>
+              <LabProfile />
+            </DashboardLayout>
           </ProtectedRoute>
         }
       />

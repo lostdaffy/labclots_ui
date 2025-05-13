@@ -21,55 +21,51 @@ const PaymentReceipt = () => {
 
   const downloadPDF = () => {
     const input = document.getElementById("pdfDownload");
-
     if (!input) return;
 
-    html2canvas(input).then((canvas) => {
+    html2canvas(input, { scale: 3 }).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
-      const pdf = new jsPDF();
+      const pdf = new jsPDF({
+        orientation: "p",
+        unit: "mm",
+        format: "a4",
+        precision: 16,
+      });
       const imgWidth = 210;
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
       pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
-      const fileName = `${data?.patientName || "receipt"}.pdf`;
-      pdf.save(fileName);
+      pdf.save(`${data?.patientName || "report"}.pdf`);
     });
   };
 
   return (
     <>
-      <div className="receipt" id="pdfDownload">
-        <div className="payment-receipt">
+      <div className="receipt-download-btn">
+        <i
+          className="ri-file-download-line"
+          onClick={downloadPDF}
+          title="Download PDF"
+        ></i>
+      </div>
+
+      <div className="receipt-page" id="pdfDownload">
+        <div className="receipt-container">
           <div className="receipt-header">
             <h2>{user?.labName || "Lab Name"}</h2>
-            <p>
-              003, Yashodan Bldg.II, Four Bungalows Andheri (W), Mumbai - 400053
-            </p>
+            <p>003, Yashodan Bldg.II, Four Bungalows Andheri (W), Mumbai - 400053</p>
             <p>Tel: 26365852, 66997034, 9821017047</p>
           </div>
-          <hr />
-          <div className="receipt-info">
+          <div className="receipt-info-section">
             <div>
-              <p>
-                <strong>Name:</strong> {data?.patientName || "N/A"}
-              </p>
-              <p>
-                <strong>Patient ID:</strong> {data?.patientId || "N/A"}
-              </p>
+              <p><strong>Name:</strong> {data?.patientName || "N/A"}</p>
+              <p><strong>Patient ID:</strong> {data?.patientId || "N/A"}</p>
             </div>
             <div>
-              <p>
-                <strong>Gender / Age:</strong> {data?.patientAge || "N/A"} yr. / {data?.patientGender || "N/A"}
-              </p>
-              <p>
-                <strong>Registration Date:</strong>
-                {data?.createdAt
-                  ? new Date(data.createdAt).toLocaleString()
-                  : "N/A"}
-              </p>
+              <p><strong>Gender / Age:</strong> {data?.patientGender || "N/A"} / {data?.patientAge || "N/A"} yr.</p>
+              <p><strong>Registration Date: </strong>{data?.createdAt ? new Date(data.createdAt).toLocaleString() : "N/A"}</p>
             </div>
           </div>
-          <hr />
-          <table className="table">
+          <table className="receipt-table">
             <thead>
               <tr>
                 <th>Sr.</th>
@@ -80,22 +76,15 @@ const PaymentReceipt = () => {
             <tbody>
               <tr>
                 <td>1</td>
-                <td>Haemoglobin</td>
+                <td>{data?.test || "N/A"}</td>
                 <td>{data?.totalAmount || "0"}</td>
               </tr>
             </tbody>
           </table>
-          <div className="amount-info">
-            <p>
-              <strong>Total Amount:</strong> Rs. {data?.totalAmount || "0"}
-            </p>
+          <div className="receipt-amount-info">
+            <p><strong>Total Amount:</strong> Rs. {data?.totalAmount || "0"}</p>
           </div>
         </div>
-      </div>
-      <div className="down-btn">
-        <button onClick={downloadPDF}>
-          <i className="ri-download-2-line"></i> Download
-        </button>
       </div>
     </>
   );

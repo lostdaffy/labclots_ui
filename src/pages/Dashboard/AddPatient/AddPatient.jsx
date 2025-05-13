@@ -65,14 +65,14 @@ const AddPatient = () => {
   }, []);
 
   return (
-    <section className="patientMain">
-      <div className="main-wrapper">
+    <section className="add-patients">
+      <div className="add-patients-wrapper">
         <h3>Register New Patient</h3>
 
-        <form className="form-card" onSubmit={handleSubmit}>
-          <div className="section-flex">
-            <div className="form-section">
-              <div className="form-group">
+        <form className="add-patients-form" onSubmit={handleSubmit}>
+          <div className="add-patients-flex">
+            <div className="add-patients-section">
+              <div className="add-patients-group">
                 <label>
                   <span>*</span> Name
                 </label>
@@ -83,7 +83,7 @@ const AddPatient = () => {
                   onChange={(e) => setPatientName(e.target.value)}
                 />
               </div>
-              <div className="form-group">
+              <div className="add-patients-group">
                 <label>
                   <span>*</span> Age
                 </label>
@@ -95,7 +95,7 @@ const AddPatient = () => {
                 />
               </div>
 
-              <div className="form-group">
+              <div className="add-patients-group">
                 <label htmlFor="patientGender">
                   <span>*</span> Gender
                 </label>
@@ -113,8 +113,8 @@ const AddPatient = () => {
               </div>
             </div>
 
-            <div className="form-section">
-              <div className="form-group">
+            <div className="add-patients-section">
+              <div className="add-patients-group">
                 <label>Email ID</label>
                 <input
                   type="text"
@@ -123,7 +123,7 @@ const AddPatient = () => {
                   onChange={(e) => setPatientEmail(e.target.value)}
                 />
               </div>
-              <div className="form-group">
+              <div className="add-patients-group">
                 <label>Phone Number</label>
                 <input
                   type="text"
@@ -132,7 +132,7 @@ const AddPatient = () => {
                   onChange={(e) => setPatientMobile(e.target.value)}
                 />
               </div>
-              <div className="form-group">
+              <div className="add-patients-group">
                 <label>Address</label>
                 <input
                   type="text"
@@ -143,8 +143,8 @@ const AddPatient = () => {
               </div>
             </div>
 
-            <div className="form-section">
-              <div className="form-group">
+            <div className="add-patients-section">
+              <div className="add-patients-group">
                 <label>Consultant</label>
                 <input
                   type="text"
@@ -154,7 +154,7 @@ const AddPatient = () => {
                 />
               </div>
 
-              <div className="form-group">
+              <div className="add-patients-group">
                 <label htmlFor="sample">
                   <span>*</span> Sample
                 </label>
@@ -176,7 +176,7 @@ const AddPatient = () => {
                 </select>
               </div>
 
-              <div className="form-group">
+              <div className="add-patients-group">
                 <label htmlFor="test">
                   <span>*</span> Test
                 </label>
@@ -200,8 +200,8 @@ const AddPatient = () => {
               </div>
             </div>
 
-            <div className="form-section">
-              <div className="form-group">
+            <div className="add-patients-section">
+              <div className="add-patients-group">
                 <label>
                   <span>*</span> Amount
                 </label>
@@ -221,7 +221,7 @@ const AddPatient = () => {
                   onChange={(e) => setDiscount(e.target.value)}
                 />
               </div>
-              <div className="form-group">
+              <div className="add-patients-group">
                 <label>
                   <span>*</span> Total Amount
                 </label>

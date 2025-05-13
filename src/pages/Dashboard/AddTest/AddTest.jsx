@@ -4,7 +4,6 @@ import useAuthStore from "../../../store/authStore";
 import axios from "axios";
 
 const AddTest = () => {
-
   const [testName, setTestName] = useState();
   const [testPrice, setTestPrice] = useState();
 
@@ -12,11 +11,9 @@ const AddTest = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       await addTest(testName, testPrice);
       fetchData();
-
     } catch (error) {
       console.log(error);
     }
@@ -40,16 +37,15 @@ const AddTest = () => {
   }, []);
 
   return (
-    <div className="testMain">
-      <form className="test-form" onSubmit={handleSubmit}>
+    <div className="addTestMain">
+      <form className="addTestForm" onSubmit={handleSubmit}>
         <h3>Add Test</h3>
-        <div className="test-flex">
-          <div className="test-wrapper">
-            <div className="test-group">
+        <div className="addTestFlex">
+          <div className="addTestWrapper">
+            <div className="addTestGroup">
               <label>
                 <span>*</span> Test Name
               </label>
-
               <input
                 type="text"
                 placeholder="Test Name"
@@ -58,11 +54,10 @@ const AddTest = () => {
               />
             </div>
 
-            <div className="test-group">
+            <div className="addTestGroup">
               <label>
                 <span>*</span> Test Price
               </label>
-
               <input
                 type="text"
                 placeholder="Amount"
@@ -73,18 +68,18 @@ const AddTest = () => {
           </div>
         </div>
 
-        <div className="test-button">
-          <button type="submit" className="test-btn">
+        <div className="addTestButton">
+          <button type="submit" className="addTestBtn">
             <i className="ri-add-line"></i> Add Test
           </button>
         </div>
       </form>
 
-      <div className="test-list">
+      <div className="addTestList">
         <h3>Tests</h3>
-        <div className="list-scroll">
+        <div className="addTestScroll">
           {data.map((test) => (
-            <div className="test-table">
+            <div className="addTestTable" key={test.testName}>
               <h5>{test.testName}</h5>
               <h5>₹{test.testPrice}</h5>
             </div>

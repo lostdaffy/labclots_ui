@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./Preciption.css";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
@@ -18,11 +18,22 @@ const Preciption = () => {
     const input = document.getElementById("pdfDownload");
     if (!input) return;
 
-    html2canvas(input).then((canvas) => {
+    html2canvas(input, {
+      scale: 3,
+      allowTaint: false,
+      logging: false,
+    }).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
-      const pdf = new jsPDF();
+      const pdf = new jsPDF({
+        orientation: "p",
+        unit: "mm",
+        format: "a4",
+        precision: 16,
+      });
+
       const imgWidth = 210;
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
       pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
       pdf.save(`${data?.patientName || "report"}.pdf`);
     });
@@ -30,7 +41,7 @@ const Preciption = () => {
 
   return (
     <>
-      <div className="download-btn">
+      <div className="presc-download-btn">
         <i
           className="ri-file-download-line"
           onClick={downloadPDF}
@@ -38,12 +49,12 @@ const Preciption = () => {
         ></i>
       </div>
 
-      <div className="a4-page" id="pdfDownload">
-        <div className="header-top">
-          <div className="lab-logo">
+      <div className="presc-a4-page" id="pdfDownload">
+        <div className="presc-header-top">
+          <div className="presc-lab-logo">
             <img src={labIcon} alt="Lab Logo" />
           </div>
-          <div className="header">
+          <div className="presc-header">
             <h1>{user?.labName}</h1>
             <p>
               <i className="ri-map-pin-fill"></i> J.V Jain College Road,
@@ -56,9 +67,9 @@ const Preciption = () => {
           </div>
         </div>
 
-        <div className="mini-banner">LABORATORY REPORT</div>
+        <div className="presc-mini-banner">LABORATORY REPORT</div>
 
-        <div className="patient-info">
+        <div className="presc-patient-info">
           <table>
             <tbody>
               <tr>
@@ -83,7 +94,7 @@ const Preciption = () => {
                   <strong>Contact No.:</strong> +91 {data?.patientMobile}
                 </td>
                 <td>
-                  <strong>Report Date / Time:</strong>
+                  <strong>Report Date / Time: </strong>
                   {data?.createdAt &&
                     new Date(data.createdAt).toLocaleString()}
                 </td>
@@ -97,7 +108,7 @@ const Preciption = () => {
           </table>
         </div>
 
-        <div className="rs-table">
+        <div className="presc-rs-table">
           <h5>{data?.test}</h5>
           <table>
             <thead>
